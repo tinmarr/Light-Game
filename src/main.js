@@ -18,7 +18,8 @@ var config = {
 
 var game = new Phaser.Game(config),
     grid,
-    scene;
+    scene,
+    updating = false;
 
 function preload(){
     scene = this;
@@ -66,7 +67,15 @@ function create(){
 }
 
 function update(){
-
+    if (updating){
+        grid.tiles.forEach(layer => {
+            layer.forEach(tile => {
+                if (tile instanceof Light){
+                    tile.update();
+                }
+            });
+        });
+    }
 }
 
 function makeURL(folder,file){
@@ -76,4 +85,12 @@ function makeURL(folder,file){
         var name = folder+'/'+file;
     }
     return './src/'+name+'.js';
+}
+
+function keyBinds(e){
+    if (e.key == 'r'){
+        updating = true;
+    } else if (e.key == 's'){
+        updating = false;
+    }
 }
