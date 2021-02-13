@@ -18,7 +18,10 @@ var config = {
 
 var game = new Phaser.Game(config),
     grid,
-    scene;
+    scene,
+    updating = false,
+    start = {x: 0, y: 0},
+    tileSize = 34;
 
 function preload(){
     scene = this;
@@ -43,6 +46,7 @@ function preload(){
     this.load.image('empty-tile', 'assets/empty-tile.jpg');
     this.load.image('white-light', 'assets/white-light.png');
     this.load.image('reflector-tile', 'assets/reflector.png');
+    this.load.image('extractor-tile', 'assets/extractor.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -56,15 +60,6 @@ function preload(){
 }
 
 function create(){
-    var tileSize = 34;
-    grid = new Grid(10, 20, 50, 50, 34);
-    grid.setTile(new Light(0, 0, 'E', 'white', grid));
-    grid.setTile(new ReflectorTile(10, 0, grid, tileSize, 0));
-    grid.setTile(new StoneTile(5,5,grid,tileSize));
-    grid.setTile(new Light(4, 0, 'S', 'white', grid));
-    grid.setTile(new ColorExtractor(4, 7, grid, tileSize, 1));
-
-
     // this makes something setDraggable
     /*
     var image = scene.add.sprite(200, 300, 'white-light').setInteractive();
@@ -101,10 +96,19 @@ function create(){
         gameObject.clearTint();
 
     });*/
+    makeLevel(1);
 }
 
 function update(){
-
+    if (updating){
+        grid.tiles.forEach(layer => {
+            layer.forEach(tile => {
+                if (tile instanceof Light){
+                    tile.update();
+                }
+            });
+        });
+    }
 }
 
 function makeURL(folder,file){
@@ -114,4 +118,31 @@ function makeURL(folder,file){
         var name = folder+'/'+file;
     }
     return './src/'+name+'.js';
+}
+
+function keyBinds(e){
+    if (e.key == 'r'){
+        updating = true;
+    } else if (e.key == 's'){
+        updating = false;
+    }
+}
+
+function makeLevel(levelNumber){
+    scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
+    $.getJSON('levels/'+levelNumber+'.json', (json)=>{
+        grid = new Grid(json.dims.h, json.dims.w, 50, 50, tileSize);
+        grid.setTile(new Light(json.startPos.x, json.startPos.y, json.startPos.dir, 'white', grid));
+        json.level.forEach(tile => {
+            if (tile.tileType == 'reflector'){
+                grid.setTile(new ReflectorTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation));
+            } else if (tile.tileType == 'stone'){
+                grid.setTile(new StoneTile(tile.pos.x, tile.pos.y, grid, tileSize));
+            } else if (tile.tileType == 'extractor'){
+                grid.setTile(new ColorExtractor(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation));
+            } else if (tile.tileType == 'filter'){
+                grid.setTile(new ColorFliterTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.color, tile.orientation));
+            }
+        });
+    });
 }

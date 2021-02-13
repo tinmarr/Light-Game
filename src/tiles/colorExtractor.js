@@ -1,7 +1,8 @@
 class ColorExtractor extends EmptyTile{
     constructor(x, y, grid, tileSize, orientation){
         super(x, y, grid, tileSize);
-        this.sprite.setTexture("");
+        this.sprite.setTexture('extractor-tile');
+        this.sprite.setScale(0.5);
         this.orientation = orientation; // the orientation refers to the white light position
         // 0: left  1: top  2: right  3: bottom
         if (this.orientation == 1) this.sprite.angle = 90;
@@ -9,7 +10,6 @@ class ColorExtractor extends EmptyTile{
         if (this.orientation == 2) this.sprite.setFlipY(true);
     }
     changeLight(light){
-        var dirs = ['E', 'S', 'W', 'N'];
         if (this.orientation == 0 && light.dir == 'E') {
             var posChange = [[-1, 1, 'N'], [2, 0, 'E'], [1, -1, 'S']];
         }
