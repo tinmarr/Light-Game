@@ -14,7 +14,7 @@ class Grid{
         for (var i=0; i<this.dims.h; i++){
             var layer = [];
             for (var j=0; j<this.dims.w; j++){
-                layer.push(null);
+                layer.push(new BaseTile(j, i, this, this.tileSize));
             }
             this.tiles.push(layer);
         }
