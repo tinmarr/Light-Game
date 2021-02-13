@@ -16,7 +16,14 @@ class Light{
             x: this.pos.x + posChange[dirs.indexOf(this.dir)][0],
             y: this.pos.y + posChange[dirs.indexOf(this.dir)][1],
         };
-        this.grid.getTile(newPos).changeLight(this);
+        if (newPos.x >= this.grid.dims.w){
+            return;
+        } else if (newPos.y >= this.grid.dims.h) {
+            return;
+        }
+        if (!(this.grid.getTile(newPos) instanceof Light)){
+            this.grid.getTile(newPos).changeLight(this);
+        }
     }
 
     rotate(){
