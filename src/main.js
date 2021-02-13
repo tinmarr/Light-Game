@@ -49,6 +49,7 @@ function preload(){
         makeURL('', 'grid'),
         makeURL('', 'light'),
         makeURL('tiles', 'reflectorTile'),
+        makeURL('tiles', 'colorFilterTile'),
     ]);
 }
 
