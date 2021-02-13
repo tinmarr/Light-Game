@@ -7,3 +7,4 @@ Light-Game for Gunn Hacks 7.0 2021
 -   Stone
 -   colors of Light
 -   color filter
+-   output tiles (correct, and incorrect light)
