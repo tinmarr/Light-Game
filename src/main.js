@@ -55,11 +55,11 @@ function preload(){
 function create(){
     grid = new Grid(10, 20, 50, 50, 34);
     grid.setTile(new Light(0, 0, 'E', 'white', grid));
-    grid.setTile(new ReflectorTile(10, 0, grid, 34, 0))
+    grid.setTile(new ReflectorTile(10, 0, grid, 34, 0));
 }
 
 function update(){
-    
+
 }
 
 function makeURL(folder,file){
