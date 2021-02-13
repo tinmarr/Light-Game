@@ -102,12 +102,16 @@ function create(){
 
 function update(){
     if (updating){
+        var toUpdate = [];
         grid.tiles.forEach(layer => {
             layer.forEach(tile => {
                 if (tile instanceof Light){
-                    tile.update();
+                    toUpdate.push(tile);
                 }
             });
+        });
+        toUpdate.forEach(light =>{
+            light.update()
         });
     }
 }
