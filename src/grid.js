@@ -22,11 +22,20 @@ class Grid{
 
     getPixelCoords(tileCoord){ // tile coord is an object with x and y
         var pixelCoord = {x: null, y:null};
-        
-        pixelCoord.x = this.pos.x + (tileCoord.x * this.tileSize);
-        pixelCoord.y = this.pos.y + (tileCoord.y * this.tileSize);
+
+        pixelCoord.x =  this.pos.x + (tileCoord.x * this.tileSize);
+        pixelCoord.y =  this.pos.y + (tileCoord.y * this.tileSize);
 
         return pixelCoord;
+    }
+    getGridCoords(pixelCoord){
+      //       --------------bug: can still be put on other elements on the grid
+      var tileCoord = {x: null, y:null};
+      tileCoord.x = Math.ceil((pixelCoord.x-this.pos.x) / this.tileSize);
+      tileCoord.y = Math.ceil((pixelCoord.y-this.pos.y) / this.tileSize);
+      if(tileCoord.x > this.dims.w-1) tileCoord = this.dims.w-1;
+      if(tileCoord.y > this.dims.h-1) tileCoord = this.dims.h-1;
+      return tileCoord;
     }
 
     getNeighbours(row, col){
