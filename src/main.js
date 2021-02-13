@@ -62,7 +62,6 @@ function create(){
     grid.setTile(new Light(0, 0, 'E', 'white', grid));
     grid.setTile(new ReflectorTile(10, 0, grid, tileSize, 0));
     grid.setTile(new StoneTile(5,5,grid,tileSize));
-    grid.setTile(new Light(4, 0, 'S', 'white', grid));
     grid.setTile(new ColorExtractor(4, 7, grid, tileSize, 1));
 }
 
