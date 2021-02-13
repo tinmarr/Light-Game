@@ -49,14 +49,20 @@ function preload(){
         makeURL('', 'grid'),
         makeURL('', 'light'),
         makeURL('tiles', 'reflectorTile'),
+        makeURL('tiles', 'stoneTile'),
+        makeURL('tiles', 'colorExtractor'),
         makeURL('tiles', 'colorFilterTile'),
     ]);
 }
 
 function create(){
+    var tileSize = 34;
     grid = new Grid(10, 20, 50, 50, 34);
     grid.setTile(new Light(0, 0, 'E', 'white', grid));
-    grid.setTile(new ReflectorTile(10, 0, grid, 34, 0));
+    grid.setTile(new ReflectorTile(10, 0, grid, tileSize, 0));
+    grid.setTile(new StoneTile(5,5,grid,tileSize));
+    grid.setTile(new Light(4, 0, 'S', 'white', grid));
+    grid.setTile(new ColorExtractor(4, 7, grid, tileSize, 1));
 }
 
 function update(){

@@ -8,3 +8,9 @@ Light-Game for Gunn Hacks 7.0 2021
 1.  Empty tile just gets replaced with light
 1.  Relflection reflects accordingly
 1.  Add other tiles
+
+# sprites needed
+
+- Stone
+- colors of Light
+- color extractor
