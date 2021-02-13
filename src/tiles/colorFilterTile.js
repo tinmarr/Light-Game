@@ -10,8 +10,8 @@ class ColorFliterTile extends EmptyTile{
             var dirs = ['E', 'S', 'W', 'N'];
             var posChange = [[1, 0], [0, 1], [-1, 0], [0, -1]];
             var newPos = {
-                x: this.pos.x + (2 * posChange[dirs.indexOf(this.dir)][0]),
-                y: this.pos.y + (2 * posChange[dirs.indexOf(this.dir)][1]),
+                x: this.pos.x + posChange[dirs.indexOf(light.dir)][0],
+                y: this.pos.y + posChange[dirs.indexOf(light.dir)][1],
             };
             grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));
         }   
