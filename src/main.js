@@ -51,7 +51,7 @@ function preload(){
         makeURL('tiles', 'reflectorTile'),
         makeURL('tiles', 'stoneTile'),
         makeURL('tiles', 'colorExtractor'),
-
+        makeURL('tiles', 'colorFilterTile'),
     ]);
 }
 
