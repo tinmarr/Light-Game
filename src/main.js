@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -17,9 +17,11 @@ var config = {
 };
 
 var game = new Phaser.Game(config),
-    grid;
+    grid,
+    scene;
 
 function preload(){
+    scene = this;
     width = this.game.canvas.width;
     height = this.game.canvas.height;
     var progressBar = this.add.graphics(),
@@ -38,6 +40,8 @@ function preload(){
         progressBox.destroy();
     });
 
+    this.load.image('white-square', 'assets/White-Square.jpg');
+
     this.load.scripts('all', [
         makeURL('tiles', 'baseTile'),
         makeURL('', 'grid'),
@@ -45,7 +49,7 @@ function preload(){
 }
 
 function create(){
-    grid = new Grid(5, window.innerWidth / 2, window.innerHeight / 2, 30);
+    grid = new Grid(5, 5, window.innerWidth / 2, window.innerHeight / 2, 30);
 }
 
 function update(){
