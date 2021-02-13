@@ -5,6 +5,7 @@ class Light{
         this.color = color;
         var pixelPos = grid.getPixelCoords(this.pos);
         this.sprite = scene.add.sprite(pixelPos.x, pixelPos.y, color+'-light');
+        this.sprite.setData('type', 'light');
         this.rotate();
         this.grid = grid;
     }
