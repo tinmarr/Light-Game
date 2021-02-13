@@ -1,5 +1,5 @@
 class BaseTile {
     constructor(){
-        
+
     }
 }
