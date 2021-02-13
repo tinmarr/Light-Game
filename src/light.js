@@ -16,7 +16,7 @@ class Light{
             x: this.pos.x + posChange[dirs.indexOf(this.dir)][0],
             y: this.pos.y + posChange[dirs.indexOf(this.dir)][1],
         };
-        grid.setTile(new Light(newPos.x, newPos.y, this.dir, this.color, this.grid));
+        this.grid.getTile(newPos).changeLight(this);
     }
 
     rotate(){
