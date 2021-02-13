@@ -1,6 +1,6 @@
 class Grid{
     // side length is always odd! (sideLength of entire grid)
-    // (x, y) is the center of the grid
+    // (x, y) is the top right of the grid
     // tileSize is the diameter of the tile (edge to edge)
     constructor(height, width, x, y, tileSize){
         this.tiles = []; // Stores all tiles
@@ -21,7 +21,12 @@ class Grid{
     }
 
     getPixelCoords(tileCoord){ // tile coord is an object with x and y
+        var pixelCoord = {x: null, y:null};
+        
+        pixelCoord.x = this.pos.x + (tileCoord.x * this.tileSize);
+        pixelCoord.y = this.pos.y + (tileCoord.y * this.tileSize);
 
+        return pixelCoord;
     }
 
     getNeighbors(tileCoord){
