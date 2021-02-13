@@ -19,7 +19,8 @@ var config = {
 var game = new Phaser.Game(config),
     grid,
     scene,
-    updating = false;
+    updating = false,
+    start = {x: 0, y: 0};
 
 function preload(){
     scene = this;
@@ -44,6 +45,7 @@ function preload(){
     this.load.image('empty-tile', 'assets/empty-tile.jpg');
     this.load.image('white-light', 'assets/white-light.png');
     this.load.image('reflector-tile', 'assets/reflector.png');
+    this.load.image('extractor-tile', 'assets/extractor.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -58,8 +60,8 @@ function preload(){
 
 function create(){
     var tileSize = 34;
-    grid = new Grid(10, 20, 50, 50, 34);
-    grid.setTile(new Light(0, 0, 'E', 'white', grid));
+    grid = new Grid(10, 20, 50, 50, tileSize);
+    grid.setTile(new Light(start.x, start.y, 'E', 'white', grid));
     grid.setTile(new ReflectorTile(10, 0, grid, tileSize, 0));
     grid.setTile(new StoneTile(5,5,grid,tileSize));
     grid.setTile(new ColorExtractor(4, 7, grid, tileSize, 1));
