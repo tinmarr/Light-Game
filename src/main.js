@@ -21,7 +21,8 @@ var game = new Phaser.Game(config),
     scene,
     updating = false,
     start = {x: 0, y: 0},
-    tileSize = 34;
+    tileSize = 34,
+    starterLight;
 
 function preload(){
     scene = this;
@@ -121,10 +122,28 @@ function makeURL(folder,file){
 }
 
 function keyBinds(e){
-    if (e.key == 'r'){
-        updating = true;
-    } else if (e.key == 's'){
-        updating = false;
+    if (e.key == ' '){
+        if (updating){
+            updating = false;
+            newList = [];
+            scene.children.getChildren().forEach(sprite => {
+                if (sprite.getData('type') != 'light'){
+                    newList.push(sprite);
+                }
+            })
+            grid.tiles.forEach(layer => {
+                layer.forEach(tile => {
+                    if (tile instanceof Light){
+                        grid.setTile(new EmptyTile(tile.pos.x, tile.pos.y, grid, tileSize));
+                    }
+                })
+            })
+            grid.setTile(starterLight);
+            newList.push(starterLight.sprite);
+            scene.children.list = newList;
+        } else {
+            updating = true;
+        }
     }
 }
 
@@ -132,7 +151,8 @@ function makeLevel(levelNumber){
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/'+levelNumber+'.json', (json)=>{
         grid = new Grid(json.dims.h, json.dims.w, 50, 50, tileSize);
-        grid.setTile(new Light(json.startPos.x, json.startPos.y, json.startPos.dir, 'white', grid));
+        starterLight = new Light(json.startPos.x, json.startPos.y, json.startPos.dir, 'white', grid);
+        grid.setTile(starterLight);
         json.level.forEach(tile => {
             if (tile.tileType == 'reflector'){
                 grid.setTile(new ReflectorTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation));
