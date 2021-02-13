@@ -63,6 +63,44 @@ function create(){
     grid.setTile(new StoneTile(5,5,grid,tileSize));
     grid.setTile(new Light(4, 0, 'S', 'white', grid));
     grid.setTile(new ColorExtractor(4, 7, grid, tileSize, 1));
+
+
+    // this makes something setDraggable
+    /*
+    var image = scene.add.sprite(200, 300, 'white-light').setInteractive();
+    image.on('pointerover', function () {
+
+        image.setTint(0x00ff00);
+
+    });
+
+    image.on('pointerout', function () {
+
+        image.clearTint();
+
+    });
+
+    scene.input.setDraggable(image);
+
+    scene.input.on('dragstart', function (pointer, gameObject) {
+
+        gameObject.setTint(0xff0000);
+
+    });
+
+    scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+        var pixelCoord = {x: dragX, y:dragY};
+        var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
+        gameObject.x = newcoords.x;
+        gameObject.y = newcoords.y;
+
+    });
+
+    scene.input.on('dragend', function (pointer, gameObject) {
+
+        gameObject.clearTint();
+
+    });*/
 }
 
 function update(){
