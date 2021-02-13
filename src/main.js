@@ -16,7 +16,8 @@ var config = {
     },
 };
 
-var game = new Phaser.Game(config);
+var game = new Phaser.Game(config),
+    grid;
 
 function preload(){
     width = this.game.canvas.width;
@@ -44,7 +45,7 @@ function preload(){
 }
 
 function create(){
-
+    grid = new Grid(5, window.innerWidth / 2, window.innerHeight / 2, 30);
 }
 
 function update(){

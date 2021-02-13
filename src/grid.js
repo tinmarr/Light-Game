@@ -1,29 +1,26 @@
 class Grid{
-    constructor(sideLength){
+    // side length is always odd! (sideLength of entire grid)
+    // (x, y) is the center of the grid
+    // tileSize is the diameter of the tile (edge to edge)
+    constructor(height, width, x, y, tileSize){
         this.tiles = []; // Stores all tiles
         this.initTilesArray(sideLength);
+        this.pos = {x: x, y: y};
+        this.tileSize = tileSize;
+        this.dims = {h: height, w: width};
     }
 
     initTilesArray(sideLength){
-        var numLayers = sideLength+(sideLength-1);
-        var longestLength = numLayers;
-
-        for (var i=0; i<numLayers; i++){
+        for (var i=0; i<this.dims.h; i++){
             var layer = [];
-            if (sideLength+i <= longestLength){
-                for (var j=0; j<sideLength+i; j++){
-                    layer.push(null);
-                }
-            } else {
-                for (var j=0; j< longestLength - (i - sideLength) - 1;j++){
-                    layer.push(null);
-                }
+            for (var j=0; j<this.dims.w; j++){
+                layer.push(null);
             }
             this.tiles.push(layer);
         }
     }
 
-    getPixelCoords(tileCoord){
+    getPixelCoords(tileCoord){ // tile coord is an object with x and y
 
     }
 
