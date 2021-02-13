@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: window.innerHeight,
+    width: window.innerWidth,
     height: window.innerHeight,
     physics: {
         default: 'arcade',
@@ -40,16 +40,22 @@ function preload(){
         progressBox.destroy();
     });
 
-    this.load.image('white-square', 'assets/White-Square.jpg');
+    this.load.image('empty-tile', 'assets/empty-tile.jpg');
+    this.load.image('white-light', 'assets/white-light.png');
+    this.load.image('reflector-tile', 'assets/reflector.png');
 
     this.load.scripts('all', [
-        makeURL('tiles', 'baseTile'),
+        makeURL('tiles', 'emptyTile'),
         makeURL('', 'grid'),
+        makeURL('', 'light'),
+        makeURL('tiles', 'reflectorTile'),
     ]);
 }
 
 function create(){
-    grid = new Grid(5, 5, window.innerWidth / 2, window.innerHeight / 2, 30);
+    grid = new Grid(10, 20, 50, 50, 34);
+    grid.setTile(new Light(0, 0, 'E', 'white', grid));
+    grid.setTile(new ReflectorTile(10, 0, grid, 34, 0))
 }
 
 function update(){

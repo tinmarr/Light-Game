@@ -14,7 +14,7 @@ class Grid{
         for (var i=0; i<this.dims.h; i++){
             var layer = [];
             for (var j=0; j<this.dims.w;j++){
-                layer.push(new BaseTile(j, i, this, this.tileSize));
+                layer.push(new EmptyTile(j, i, this, this.tileSize));
             }
             this.tiles.push(layer);
         }
@@ -46,4 +46,13 @@ class Grid{
         return neighbours
     }
 
+    setTile(entity){
+        if (!(entity.pos.y > this.dims.h || entity.pos.x > this.dims.w)){
+            this.tiles[entity.pos.y][entity.pos.x] = entity;
+        }
+    }
+
+    getTile(pos){
+        return this.tiles[pos.y][pos.x];
+    }
 }
