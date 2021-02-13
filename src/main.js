@@ -44,7 +44,12 @@ function preload(){
     });
 
     this.load.image('empty-tile', 'assets/empty-tile.jpg');
+    // load light colors
     this.load.image('white-light', 'assets/white-light.png');
+    this.load.image('red-light', 'assets/red-light.png');
+    this.load.image('green-light', 'assets/green-light.png');
+    this.load.image('blue-light', 'assets/blue-light.png');
+    //endlights
     this.load.image('reflector-tile', 'assets/reflector.png');
     this.load.image('extractor-tile', 'assets/extractor.png');
 
@@ -56,6 +61,7 @@ function preload(){
         makeURL('tiles', 'stoneTile'),
         makeURL('tiles', 'colorExtractor'),
         makeURL('tiles', 'colorFilterTile'),
+        makeURL('tiles', 'outputTile'),
     ]);
 }
 
@@ -132,7 +138,7 @@ function makeLevel(levelNumber){
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/'+levelNumber+'.json', (json)=>{
         grid = new Grid(json.dims.h, json.dims.w, 50, 50, tileSize);
-        grid.setTile(new Light(json.startPos.x, json.startPos.y, json.startPos.dir, 'white', grid));
+        grid.setTile(new Light(json.startPos.x, json.startPos.y, json.startPos.dir, json.startPos.color, grid));
         json.level.forEach(tile => {
             if (tile.tileType == 'reflector'){
                 grid.setTile(new ReflectorTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation));
@@ -142,6 +148,8 @@ function makeLevel(levelNumber){
                 grid.setTile(new ColorExtractor(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation));
             } else if (tile.tileType == 'filter'){
                 grid.setTile(new ColorFliterTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.color, tile.orientation));
+            } else if (tile.tileType == 'output'){
+                grid.setTile(new OutputTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation, tile.lightAccept));
             }
         });
     });
