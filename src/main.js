@@ -117,7 +117,7 @@ function update(){
             });
         });
         toUpdate.forEach(light =>{
-            light.update()
+            light.update();
         });
     }
 }
@@ -146,6 +146,7 @@ function keyBinds(e){
                     if (tile instanceof Light){
                         grid.setTile(new EmptyTile(tile.pos.x, tile.pos.y, grid, tileSize));
                     }
+                    if(tile instanceof OutputTile) tile.reset();
                 })
             })
             grid.setTile(starterLight);
