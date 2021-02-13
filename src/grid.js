@@ -29,7 +29,7 @@ class Grid{
         return pixelCoord;
     }
 
-    neighbours(row, col){
+    getNeighbours(row, col){
         var locations = [[-1,1], [0,1], [1,1], [-1,0], [1,0], [-1,-1], [0,-1], [1,-1]];
         var neighbours = [];
         for (var i = 0; i<locations.length;i++){
