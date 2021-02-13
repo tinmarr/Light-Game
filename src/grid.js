@@ -1,6 +1,6 @@
 class Grid{
     // side length is always odd! (sideLength of entire grid)
-    // (x, y) is the top right of the grid
+    // (x, y) is the top left of the grid
     // tileSize is the diameter of the tile (edge to edge)
     constructor(height, width, x, y, tileSize){
         this.tiles = []; // Stores all tiles

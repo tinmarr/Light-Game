@@ -1,0 +1,46 @@
+{
+    "dims":{
+        "w": 20,
+        "h": 10
+    },
+    "startPos":{
+        "x": 0,
+        "y": 0,
+        "dir": "E"
+    },
+    "level":[
+        {
+            "tileType": "reflector",
+            "pos": {
+                "x": 5,
+                "y": 0
+            },
+            "orientation": 0
+        },
+        {
+            "tileType": "stone",
+            "pos":{
+                "x": 5,
+                "y": 5
+            }
+        },
+        {
+            "tileType": "extractor",
+            "pos":{
+                "x": 4,
+                "y": 7
+            },
+            "orientation": 1
+        },
+        {
+            "tileType": "filter",
+            "pos":{
+                "x": 10,
+                "y": 5
+            },
+            "color": "white",
+            "orientation": 1
+        }
+    ],
+    "inventory":[]
+}
