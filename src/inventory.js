@@ -29,6 +29,8 @@ class Inventory {
             tile = new ColorExtractor(null, null, null, tileSize, item.orientation || 0, pixelCoords);
         } else if (item.name == 'filter') {
             tile = new ColorFliterTile(null, null, null, tileSize, 'white', item.orientation || 0, pixelCoords);
+        }else if (item.name == 'stone') {
+            tile = new StoneTile(null, null, null, tileSize, pixelCoords);
         }
         tile.sprite.setInteractive();
         scene.input.setDraggable(tile.sprite);
