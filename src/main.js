@@ -87,6 +87,11 @@ function preload() {
     // menu
     this.load.image('back_button', './assets/imgs/back.png');
     this.load.image('play_button', './assets/imgs/play.png');
+    // Flashlight
+    this.load.image('red-flashlight', './assets/imgs/Flashlight/FlashlightRed.png');
+    this.load.image('blue-flashlight', './assets/imgs/Flashlight/FlashlightBlue.png');
+    this.load.image('green-flashlight', './assets/imgs/Flashlight/FlashlightGreen.png');
+    this.load.image('white-flashlight', './assets/imgs/Flashlight/FlashlightWhite.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -99,6 +104,7 @@ function preload() {
         makeURL('tiles', 'outputTile'),
         makeURL('', 'inventory'),
         makeURL('', 'ghostLight'),
+        makeURL('tiles', 'flashlightTile'),
     ]);
 
     // music and sound effects
@@ -168,6 +174,7 @@ function update() {
 
 function reset() {
     newList = [];
+    flashlights = [];
     scene.children.getChildren().forEach((sprite) => {
         if (sprite.getData('type') != 'light') {
             newList.push(sprite);
@@ -179,11 +186,15 @@ function reset() {
                 grid.setTile(new EmptyTile(tile.pos.x, tile.pos.y, grid, tileSize));
             }
             if (tile instanceof OutputTile) tile.reset();
+            if (tile instanceof FlashlightTile) flashlights.push(tile);
         });
     });
     grid.setTile(starterLight);
     newList.push(starterLight.sprite);
     scene.children.list = newList;
+    flashlights.forEach((fl) => {
+        fl.generateLight();
+    });
 }
 
 function makeURL(folder, file) {
