@@ -23,6 +23,7 @@ var game = new Phaser.Game(config),
     grid,
     scene,
     updating = false,
+    liveupdate = true,
     start = { x: 0, y: 0 },
     tileSize = 50,
     tintColor = 0x696a6a,
@@ -143,7 +144,9 @@ function create() {
             grid.setTile(tileClass);
         }
         reset();
-        updating = true;
+        if (liveupdate) {
+            updating = true;
+        }
     });
 }
 
@@ -195,7 +198,10 @@ function makeURL(folder, file) {
 function keyBinds(e) {
     if (e.key == ' ') {
         if (!updating) {
+            liveupdate = true;
             updating = true;
+        } else {
+            liveupdate = false;
         }
     }
 }
