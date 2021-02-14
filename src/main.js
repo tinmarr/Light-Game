@@ -61,6 +61,7 @@ function preload() {
     this.load.image('reflector-tile', './assets/imgs/reflector.png');
     this.load.image('extractor-tile', './assets/imgs/extractor.png');
     this.load.image('stone-tile', './assets/imgs/stone.png');
+    this.load.image('merger-tile', './assets/imgs/Merger.png');
     //inventory bg
     this.load.image('inventory-bg', './assets/imgs/Inventory.png');
     //Filters
@@ -112,6 +113,7 @@ function preload() {
         makeURL('', 'inventory'),
         makeURL('', 'ghostLight'),
         makeURL('tiles', 'flashlightTile'),
+        makeURL('tiles', 'mergerTile'),
     ]);
 
     // music and sound effects
@@ -226,7 +228,7 @@ function makeURL(folder, file) {
 }
 
 function keyBinds(e) {
-    if (e.key == ' ') {
+    if (e.key == ' ' && grid != null) {
         if (!updating) {
             liveupdate = true;
             updating = true;
@@ -244,6 +246,7 @@ function levelSelect() {
         liveupdate = false;
         reset();
     } catch (e) {}
+    grid = null;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     // draw background
     background = scene.add.image(0, 0, 'inventory-bg').setOrigin(0).setScale(15).setDepth(0); // levelSelect background
@@ -324,6 +327,7 @@ function menu() {
         liveupdate = false;
         reset();
     } catch (e) {}
+    grid = null;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     scene.sound.pauseOnBlur = false;
     // scene.sound.play("main-menu_music", {  --- uncomment when music is available
@@ -397,6 +401,10 @@ function makeLevel(levelNumber) {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
             } else if (tile.name == 'flashlight') {
                 temp = new FlashlightTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
+            } else if (tile.name == 'merger') {
+                temp = new MergerTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             }
