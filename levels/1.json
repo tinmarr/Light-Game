@@ -30,9 +30,6 @@
         {"name":"mirror","orientation":1},
         {"name":"mirror"},
         {"name":"mirror"},
-        {"name":"prism"},
-        {"name":"stone"},
-        {"name":"filter", "color": "white"},
-        {"name":"filter", "color": "blue"}
+        {"name":"prism"}
     ]
 }
