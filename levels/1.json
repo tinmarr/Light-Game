@@ -1,78 +1,31 @@
 {
-    "dims":{
-        "w": 20,
-        "h": 10
-    },
+    "dims":[7,20],
     "startPos":{
-        "x": 0,
-        "y": 0,
-        "dir": "E",
-        "color": "white"
+        "pos":[1,0],
+        "dir":"S",
+        "color":"white"
     },
     "level":[
         {
-            "tileType": "reflector",
-            "pos": {
-                "x": 4,
-                "y": 0
-            },
-            "orientation": 0
+            "name": "output",
+            "pos":[2,6],
+            "lightAccept": "red",
+            "orientation":1
         },
         {
-            "tileType": "stone",
-            "pos":{
-                "x": 5,
-                "y": 5
-            }
+            "name":"mirror",
+            "pos":[6,2]
         },
         {
-            "tileType": "extractor",
-            "pos":{
-                "x": 4,
-                "y": 7
-            },
-            "orientation": 1
-        },
-        {
-            "tileType": "filter",
-            "pos":{
-                "x": 10,
-                "y": 5
-            },
-            "color": "white",
-            "orientation": 1
-        },
-        {
-            "tileType": "output",
-            "pos":{
-                "x": 0,
-                "y": 7
-            },
-            "lightAccept": "blue",
-            "orientation": 0
-        },
-        {
-            "tileType": "extractor",
-            "pos":{
-                "x": 7,
-                "y": 0
-            },
-            "orientation": 2
-        },
-        {
-            "tileType": "reflector",
-            "pos":{
-                "x": 10,
-                "y": 3
-            },
-            "orientation": 1
+            "name":"mirror",
+            "pos":[0,9],
+            "orientation":1
         }
-
-
     ],
     "inventory":[
-        "reflector",
-        "reflector",
-        "extractor"
+        {"name":"mirror","orientation":1},
+        {"name":"mirror"},
+        {"name":"mirror"},
+        {"name":"prism"}
     ]
 }

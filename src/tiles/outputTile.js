@@ -13,11 +13,11 @@ class OutputTile extends EmptyTile {
     reset() {
         this.sprite.setTexture(this.lightAccept + '-out-no');
     }
-    correctOrientation(lightDir){
-        if(this.orientation == 0) return lightDir == 'E';
-        if(this.orientation == 1) return lightDir == 'S';
-        if(this.orientation == 2) return lightDir == 'W';
-        if(this.orientation == 3) return lightDir == 'N';
+    correctOrientation(lightDir) {
+        if (this.orientation == 0) return lightDir == 'E';
+        if (this.orientation == 1) return lightDir == 'S';
+        if (this.orientation == 2) return lightDir == 'W';
+        if (this.orientation == 3) return lightDir == 'N';
     }
     changeLight(light) {
         // check if white light enters: this should be changed if we want different lights to enter the splitter
@@ -26,7 +26,6 @@ class OutputTile extends EmptyTile {
             return;
         } else {
             this.sprite.setTexture(this.lightAccept + '-out-wrong');
-
         }
     }
 }
