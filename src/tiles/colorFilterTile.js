@@ -10,8 +10,9 @@ class ColorFliterTile extends EmptyTile {
         if (this.orientation == 2) this.sprite.setFlipY(true);
     }
 
-    changeLight(light) {
-        if (this.color == light.color) {
+    changeLight(light){
+        super.change_sound();
+        if (this.color == light.color){
             if (this.orientation == 0 && light.dir == 'E') {
                 var posChange = [1, 0];
             } else if (this.orientation == 1 && light.dir == 'S') {
@@ -25,7 +26,8 @@ class ColorFliterTile extends EmptyTile {
                 x: this.pos.x + posChange[0],
                 y: this.pos.y + posChange[1],
             };
-            grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));
+            if(this.grid.onBoard(newPos.x, newPos.y)){
+            grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));}
         }
     }
 }

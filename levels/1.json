@@ -49,8 +49,26 @@
                 "y": 7
             },
             "lightAccept": "blue",
-            "orientation": 0
+            "orientation": 1
+        },
+        {
+            "tileType": "extractor",
+            "pos":{
+                "x": 7,
+                "y": 0
+            },
+            "orientation": 2
+        },
+        {
+            "tileType": "reflector",
+            "pos":{
+                "x": 10,
+                "y": 3
+            },
+            "orientation": 1
         }
+
+
     ],
     "inventory":[
         "reflector",

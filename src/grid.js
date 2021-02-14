@@ -19,6 +19,10 @@ class Grid {
             this.tiles.push(layer);
         }
     }
+    onBoard(x, y){
+      return (0 <= y && y < this.tiles[0].length && 0 <= x && x < this.tiles.length);
+
+    }
 
     getPixelCoords(tileCoord) {
         // tile coord is an object with x and y
