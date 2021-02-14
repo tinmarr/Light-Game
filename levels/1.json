@@ -17,6 +17,10 @@
             "pos":[6,2]
         },
         {
+            "name":"stone",
+            "pos":[1,6]
+        },
+        {
             "name":"mirror",
             "pos":[0,9],
             "orientation":1

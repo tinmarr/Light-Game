@@ -315,13 +315,21 @@ function makeLevel(levelNumber) {
         grid.setTile(starterLight);
         json.level.forEach((tile) => {
             if (tile.name == 'mirror') {
-                grid.setTile(new ReflectorTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0));
+                temp = new ReflectorTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             } else if (tile.name == 'stone') {
-                grid.setTile(new StoneTile(tile.pos[0], tile.pos[1], grid, tileSize));
+                temp = new StoneTile(tile.pos[0], tile.pos[1], grid, tileSize);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             } else if (tile.name == 'prism') {
-                grid.setTile(new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0));
+                temp = new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0)
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             } else if (tile.name == 'filter') {
-                grid.setTile(new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color, tile.orientation || 0));
+                temp = new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color, tile.orientation || 0);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             } else if (tile.name == 'output') {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
             }
