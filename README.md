@@ -5,6 +5,8 @@ Light-Game for Gunn Hacks 7.0 2021
 # sprites needed
 
 -   Stone
--   colors of Light
 -   color filter
 -   output tiles (correct, and incorrect light)
+-   Inventory Background
+-   Game Background
+-   Tile Background

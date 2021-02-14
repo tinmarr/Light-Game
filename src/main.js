@@ -14,6 +14,9 @@ var config = {
         create: create,
         update: update
     },
+    render: {
+        pixelArt: true
+    }
 };
 
 var game = new Phaser.Game(config),
@@ -52,7 +55,9 @@ function preload(){
     this.load.image('blue-light', 'assets/blue-light.png');
     //endlights
     this.load.image('reflector-tile', 'assets/reflector.png');
-    this.load.image('extractor-tile', 'assets/extractor.png');
+    this.load.image('extractor-tile', 'assets/extractor1.png');
+    //inventory bg
+    this.load.image('inventory-bg', 'assets/inventory-bg.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -63,47 +68,26 @@ function preload(){
         makeURL('tiles', 'colorExtractor'),
         makeURL('tiles', 'colorFilterTile'),
         makeURL('tiles', 'outputTile'),
+        makeURL('', 'inventory'),
     ]);
 }
 
 function create(){
-    // this makes something setDraggable
-    /*
-    var image = scene.add.sprite(200, 300, 'white-light').setInteractive();
-    image.on('pointerover', function () {
-
-        image.setTint(0x00ff00);
-
-    });
-
-    image.on('pointerout', function () {
-
-        image.clearTint();
-
-    });
-
-    scene.input.setDraggable(image);
-
-    scene.input.on('dragstart', function (pointer, gameObject) {
-
-        gameObject.setTint(0xff0000);
-
-    });
-
-    scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+    makeLevel(1);
+    scene.input.on('drag', (pointer, gameObject, dragX, dragY) => {
         var pixelCoord = {x: dragX, y:dragY};
         var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
-        gameObject.x = newcoords.x;
-        gameObject.y = newcoords.y;
-
+        if (newcoords == null){
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+        } else {
+            gameObject.x = newcoords.x;
+            gameObject.y = newcoords.y;
+        }
     });
-
-    scene.input.on('dragend', function (pointer, gameObject) {
-
-        gameObject.clearTint();
-
-    });*/
-    makeLevel(1);
+    scene.input.on('dragend', (pointer, gameObject) => {
+        var gridCoords = grid.getGridCoords({x: gameObject.x, y: gameObject.y});
+    });
 }
 
 function update(){
@@ -177,5 +161,6 @@ function makeLevel(levelNumber){
                 grid.setTile(new OutputTile(tile.pos.x, tile.pos.y, grid, tileSize, tile.orientation, tile.lightAccept));
             }
         });
+        inv = new Inventory({x: window.innerWidth - 192/2, y: 768/2}, json.inventory);
     });
 }

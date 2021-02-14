@@ -1,6 +1,6 @@
 class ReflectorTile extends EmptyTile{
-    constructor(x, y, grid, tileSize, orientation){
-        super(x, y, grid, tileSize);
+    constructor(x, y, grid, tileSize, orientation, pixelCoords = null){
+        super(x, y, grid, tileSize, pixelCoords);
         this.sprite.setTexture('reflector-tile');
         this.orientation = orientation; // 0 means slope -1 and 1 means slope 1
         if (this.orientation == 1) this.sprite.setFlipY(true);
