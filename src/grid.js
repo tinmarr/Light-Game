@@ -76,18 +76,24 @@ class Grid {
         }
         return neighbours;
     }
+    setLightTile(lightx, lighty, dir, 'red'){
+      var pos = {
+        x: lightx,
+        y: lighty
+      }
+      if (
+        !(lighty > this.dims.h || lightx > this.dims.w)) &&
+          (this.getTile(pos).constructor.name != EmptyTile.name) &&
+      ) {
+        this.getTile(pos).changeLight(light);
+      }
+    }
+
+
 
     setTile(entity) {
         if (!(entity.pos.y > this.dims.h || entity.pos.x > this.dims.w)) {
-            if (
-                !(this.getTile(entity.pos).constructor.name == EmptyTile.name) &&
-                this.getTile(entity.pos) instanceof EmptyTile &&
-                entity instanceof Light
-            ) {
-                this.tiles[entity.pos.y][entity.pos.x].changeLight(entity);
-            } else {
                 this.tiles[entity.pos.y][entity.pos.x] = entity;
-            }
         }
     }
     //
