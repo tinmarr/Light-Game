@@ -2,11 +2,7 @@
 
 Light-Game for Gunn Hacks 7.0 2021
 
-# sprites needed
 
--   Stone
--   color filter
--   output tiles (correct, and incorrect light)
--   Inventory Background
--   Game Background
--   Tile Background
+- made from 2/12/2021 5pm - 2/14 8am
+- Contributors: Martin Chaperot-Merino, Tomer Sedan, Yamm Elnekave, and thank you so much Guy Ben-Zeev for the music.
+- play the game at https://tinmarr.github.io/Light-Game/
