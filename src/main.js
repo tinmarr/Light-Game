@@ -184,7 +184,7 @@ function update() {
             win = outputTiles[i];
         }
         if (win) {
-            // win!!
+            writeText('You Win!\nGo back to the main menu and move on to the next level!', window.innerWidth / 2, window.innerHeight / 2, 24);
         }
     }
 }
@@ -237,6 +237,11 @@ function keyBinds(e) {
 }
 
 function levelSelect() {
+    try {
+        updating = false;
+        liveupdate = false;
+        reset();
+    } catch (e) {}
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     // draw background
     background = scene.add.image(0, 0, 'inventory-bg').setOrigin(0).setScale(15).setDepth(0); // levelSelect background
@@ -293,6 +298,11 @@ function levelSelect() {
 }
 
 function menu() {
+    try {
+        updating = false;
+        liveupdate = false;
+        reset();
+    } catch (e) {}
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     scene.sound.pauseOnBlur = false;
     // scene.sound.play("main-menu_music", {  --- uncomment when music is available
@@ -322,19 +332,23 @@ function menu() {
     });
 }
 
-function writeText(prompt) {
+function writeText(prompt, x, y, size) {
     let strings = prompt.match(/.{1,30}/g);
     var bottomOfScene = {
-        // make way to get this dynamically
-        x: 50,
-        y: 500,
+        x: x,
+        y: y,
     };
     for (let i = 0; i < strings.length; i++) {
-        var txt = scene.add.text(bottomOfScene.x, bottomOfScene.y + 30 * i, strings[i], { font: '16px Courier', fill: '#00ff00' });
+        var txt = scene.add.text(bottomOfScene.x, bottomOfScene.y + 30 * i, strings[i], { font: size + 'px Courier', fill: '#00ff00' });
     }
 }
 
 function makeLevel(levelNumber) {
+    try {
+        updating = false;
+        liveupdate = false;
+        reset();
+    } catch (e) {}
     scene.input.pointerOver;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
