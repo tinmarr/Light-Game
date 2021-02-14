@@ -345,6 +345,14 @@ function makeLevel(levelNumber) {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
             }
         });
+        let backButton = scene.add.image(10, 10, 'back_button').setOrigin(0).setScale(2).setDepth(1);
+        backButton.setInteractive();
+        backButton.on('pointerup', () => {
+            backButton.off('pointerover');
+            backButton.off('pointerout');
+            backButton.off('pointerup');
+            levelSelect();
+        });
         inv = new Inventory({ x: window.innerWidth - 192 / 2, y: 768 / 2 }, json.inventory);
     });
 }
