@@ -26,7 +26,8 @@ var game = new Phaser.Game(config),
     start = { x: 0, y: 0 },
     tileSize = 34,
     tintColor = 0x696a6a,
-    starterLight;
+    starterLight,
+    scaleSize = (tileSize - 2) / 16;
 
 function preload() {
     scene = this;
@@ -48,17 +49,18 @@ function preload() {
         progressBox.destroy();
     });
 
-    this.load.image('empty-tile', 'assets/empty-tile.jpg');
+    this.load.image('empty-tile', './assets/imgs/BaseBack.png');
     // load light colors
-    this.load.image('white-light', 'assets/white-light.png');
-    this.load.image('red-light', 'assets/red-light.png');
-    this.load.image('green-light', 'assets/green-light.png');
-    this.load.image('blue-light', 'assets/blue-light.png');
-    //endlights
-    this.load.image('reflector-tile', 'assets/reflector.png');
-    this.load.image('extractor-tile', 'assets/extractor1.png');
+    this.load.image('white-light', './assets/white-light.png');
+    this.load.image('red-light', './assets/red-light.png');
+    this.load.image('green-light', './assets/green-light.png');
+    this.load.image('blue-light', './assets/blue-light.png');
+    //load tiles
+    this.load.image('reflector-tile', './assets/reflector.png');
+    this.load.image('extractor-tile', './assets/extractor.png');
+    this.load.image('stone-tile', './assets/imgs/stone.png');
     //inventory bg
-    this.load.image('inventory-bg', 'assets/inventory-bg.png');
+    this.load.image('inventory-bg', './assets/inventory-bg.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -73,7 +75,7 @@ function preload() {
     ]);
 
     // music and sound effects
-    this.load.audio("main-menu_music", "assets/main-menu_music.mp3")
+    this.load.audio('main-menu_music', 'assets/main-menu_music.mp3');
 }
 
 function create() {
@@ -166,71 +168,70 @@ function keyBinds(e) {
     }
 }
 
-function levelSelect(){
+function levelSelect() {
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     // draw background
-    background = scene.add.image(0,0, "empty-tile").setOrigin(0).setScale(5).setDepth(0); // levelSelect background
+    background = scene.add.image(0, 0, 'empty-tile').setOrigin(0).setScale(5).setDepth(0); // levelSelect background
     //draw buttons and textboxes
-    let backButton = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, "back_button").setDepth(1);
+    let backButton = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, 'back_button').setDepth(1);
 
-    for (let i = 0; i < 5; i++){
-      var tempboi = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, "level_" + i).setDepth(1);
-      tempboi.setInteractive();
-      tempboi.on("pointerover", ()=>{
-          tempboi.setTint(tintColor);
-          // console.log("in");
-      });
-      tempboi.on("pointerout", ()=>{
-          tempboi.clearTint();
-          // console.log("out");
-      });
-      tempboi.on("pointerup", ()=>{
-          makeLevel(i);
-          // level select
-      });
+    for (let i = 0; i < 5; i++) {
+        var tempboi = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, 'level_' + i).setDepth(1);
+        tempboi.setInteractive();
+        tempboi.on('pointerover', () => {
+            tempboi.setTint(tintColor);
+            // console.log("in");
+        });
+        tempboi.on('pointerout', () => {
+            tempboi.clearTint();
+            // console.log("out");
+        });
+        tempboi.on('pointerup', () => {
+            makeLevel(i);
+            // level select
+        });
     }
     // interactivity
     backButton.setInteractive();
-    backButton.on("pointerover", ()=>{
+    backButton.on('pointerover', () => {
         backButton.setTint(tintColor);
-        console.log("in");
+        console.log('in');
     });
-    backButton.on("pointerout", ()=>{
+    backButton.on('pointerout', () => {
         backButton.clearTint();
-        console.log("out");
+        console.log('out');
     });
-    backButton.on("pointerup", ()=>{
-        console.log("out");
+    backButton.on('pointerup', () => {
+        console.log('out');
         menu();
     });
 }
 
-
-function menu(){
+function menu() {
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     scene.sound.pauseOnBlur = false;
     // scene.sound.play("main-menu_music", {  --- uncomment when music is available
     //   loop: true,
     // });
-    background = scene.add.image(0,0, "empty-tile").setOrigin(0).setScale(5).setDepth(0); //main-menu_background get rid of setscale
-    let playButton = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, "play_button").setDepth(1);
+    background = scene.add.image(0, 0, 'empty-tile').setOrigin(0).setScale(5).setDepth(0); //main-menu_background get rid of setscale
+    let playButton = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, 'play_button').setDepth(1);
 
     playButton.setInteractive();
-    playButton.on("pointerover", ()=>{
+    playButton.on('pointerover', () => {
         playButton.setTint(tintColor);
-        console.log("in");
+        console.log('in');
     });
-    playButton.on("pointerout", ()=>{
+    playButton.on('pointerout', () => {
         playButton.clearTint();
-        console.log("out");
+        console.log('out');
     });
-    playButton.on("pointerup", ()=>{
-        console.log("out");
+    playButton.on('pointerup', () => {
+        console.log('out');
         levelSelect();
     });
 }
 
-function makeLevel(levelNumber){
+function makeLevel(levelNumber) {
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
         grid = new Grid(json.dims.h, json.dims.w, 50, 50, tileSize);
