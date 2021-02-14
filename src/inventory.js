@@ -19,7 +19,7 @@ class Inventory {
             pixelX = this.bg.x + tileSize;
         }
 
-        pixelY = this.bg.y - (this.bg.height * 1.5) / 2 + Math.floor(number / 2) * tileSize + tileSize;
+        pixelY = this.bg.y - 300 + Math.floor(number / 2) * tileSize + tileSize;
         var pixelCoords = { x: pixelX, y: pixelY };
 
         var tile;
