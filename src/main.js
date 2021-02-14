@@ -260,7 +260,6 @@ function level0() {
         levels[0].clearTint();
     });
     txt.on('pointerup', () => {
-        console.log('here');
         writeText(Instructions[instructions_index], 400, 40 + instructions_index * 100, 16);
         instructions_index++;
     });

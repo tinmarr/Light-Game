@@ -7,5 +7,5 @@ class MergerTile extends EmptyTile {
         if (this.orientation == 1) this.sprite.angle = 90;
         if (this.orientation == 3) this.sprite.angle = -90;
         if (this.orientation == 2) this.sprite.setFlipX(true);
-    }
+    }// discontinued
 }
