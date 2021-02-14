@@ -20,7 +20,7 @@ class Grid {
         }
     }
     onBoard(x, y) {
-        return 0 <= y && y <= this.dims.h && 0 <= x && x <= this.dims.w;
+        return 0 <= y && y < this.dims.h && 0 <= x && x < this.dims.w;
     }
 
     getPixelCoords(tileCoord) {
@@ -82,12 +82,14 @@ class Grid {
             x: lightx,
             y: lighty,
         };
-        if (
-            !(lighty > this.dims.h || lightx > this.dims.w) &&
-            this.getTile(pos).constructor.name != EmptyTile.name &&
-            !(this.getTile(pos) instanceof Light)
-        ) {
-            this.getTile(pos).changeLight(new GhostLight(pos.x, pos.y, dir, color, this));
+        var ghostPos = { x: lightx, y: lighty };
+        if (dir == 'N') ghostPos.y++;
+        if (dir == 'S') ghostPos.y--;
+        if (dir == 'E') ghostPos.x--;
+        if (dir == 'W') ghostPos.x++;
+
+        if (this.onBoard(pos.x, pos.y) && this.getTile(pos).constructor.name != EmptyTile.name && !(this.getTile(pos) instanceof Light)) {
+            this.getTile(pos).changeLight(new GhostLight(ghostPos.x, ghostPos.y, dir, color, this));
         } else if (!(lighty > this.dims.h || lightx > this.dims.w)) {
             this.tiles[pos.y][pos.x] = new Light(pos.x, pos.y, dir, color, this);
         }

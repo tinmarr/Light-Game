@@ -36,6 +36,8 @@ class ColorExtractor extends EmptyTile {
                 [0, -2, 'N'],
                 [1, -1, 'E'],
             ];
+        } else {
+            return;
         }
         var newPos = {
             x0: light.pos.x + posChange[0][0],

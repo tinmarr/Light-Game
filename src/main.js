@@ -229,6 +229,14 @@ function levelSelect() {
             // console.log("out");
         });
         levels[i].on('pointerup', () => {
+            levels.forEach((level) => {
+                level.off('pointerover');
+                level.off('pointerout');
+                level.off('pointerup');
+            });
+            backButton.off('pointerover');
+            backButton.off('pointerout');
+            backButton.off('pointerup');
             makeLevel(i);
             // level select
         });
@@ -237,14 +245,19 @@ function levelSelect() {
     backButton.setInteractive();
     backButton.on('pointerover', () => {
         backButton.setTint(tintColor);
-        console.log('in');
     });
     backButton.on('pointerout', () => {
         backButton.clearTint();
-        console.log('out');
     });
     backButton.on('pointerup', () => {
-        console.log('out');
+        levels.forEach((level) => {
+            level.off('pointerover');
+            level.off('pointerout');
+            level.off('pointerup');
+        });
+        backButton.off('pointerover');
+        backButton.off('pointerout');
+        backButton.off('pointerup');
         menu();
     });
 }
@@ -272,6 +285,9 @@ function menu() {
     });
     playButton.on('pointerup', () => {
         // console.log('out');
+        playButton.off('pointerover');
+        playButton.off('pointerout');
+        playButton.off('pointerup');
         levelSelect();
     });
 }
@@ -289,6 +305,7 @@ function writeText(prompt) {
 }
 
 function makeLevel(levelNumber) {
+    scene.input.pointerOver;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
         grid = new Grid(json.dims[1], json.dims[0], 50, 50, tileSize);
