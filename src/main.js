@@ -120,17 +120,14 @@ function create() {
         }
     });
     scene.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-        var pixelCoord = { x: dragX, y: dragY };
-        var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
-        if (newcoords == null) {
-            gameObject.x = dragX;
-            gameObject.y = dragY;
-        } else {
-            gameObject.x = newcoords.x;
-            gameObject.y = newcoords.y;
-        }
+        gameObject.x = dragX;
+        gameObject.y = dragY;
     });
     scene.input.on('dragend', (pointer, gameObject) => {
+        var pixelCoord = { x: gameObject.x, y: gameObject.y };
+        var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
+        gameObject.x = newcoords.x;
+        gameObject.y = newcoords.y;
         var gridCoords = grid.getGridCoords({ x: gameObject.x, y: gameObject.y });
         var tileClass = gameObject.getData('class');
         if (gridCoords == null) {
