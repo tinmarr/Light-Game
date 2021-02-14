@@ -253,7 +253,26 @@ function levelSelect() {
         var imageSize = 36;
         levels.push(scene.add.image(10 + i * imageSize, background.displayHeight / 2, '' + i).setDepth(1));
     }
-    for (let i = 0; i < 6; i++) {
+    levels[0].setInteractive();
+    levels[0].on('pointerover', () => {
+        levels[0].setTint(tintColor);
+    });
+    levels[0].on('pointerout', () => {
+        levels[0].clearTint();
+    });
+    levels[0].on('pointerup', () => {
+        levels.forEach((level) => {
+            level.off('pointerover');
+            level.off('pointerout');
+            level.off('pointerup');
+        });
+        backButton.off('pointerover');
+        backButton.off('pointerout');
+        backButton.off('pointerup');
+        level0();
+        // level select
+    });
+    for (let i = 1; i < 6; i++) {
         levels[i].setInteractive();
         levels[i].on('pointerover', () => {
             levels[i].setTint(tintColor);
@@ -374,7 +393,7 @@ function makeLevel(levelNumber) {
                 grid.setTile(temp);
             } else if (tile.name == 'output') {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
-            } else if (tile.name == 'filter') {
+            } else if (tile.name == 'flashlight') {
                 temp = new FlashlightTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
