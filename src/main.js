@@ -230,6 +230,18 @@ function menu(){
     });
 }
 
+
+function writeText(prompt){
+    let strings = (prompt.match(/.{1,30}/g));
+    var bottomOfScene = { // make way to get this dynamically
+      x:50,
+      y:500,
+    }
+    for(let i = 0; i< strings.length; i++){
+    var txt = scene.add.text(bottomOfScene.x, bottomOfScene.y+30*i, strings[i], { font: '16px Courier', fill: '#00ff00' });
+    }
+}
+
 function makeLevel(levelNumber){
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
