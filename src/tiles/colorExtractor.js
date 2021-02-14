@@ -6,7 +6,7 @@ class ColorExtractor extends EmptyTile {
         // 0: left  1: top  2: right  3: bottom
         if (this.orientation == 1) this.sprite.angle = 90;
         if (this.orientation == 3) this.sprite.angle = -90;
-        if (this.orientation == 2) this.sprite.setFlipY(true);
+        if (this.orientation == 2) this.sprite.setFlipX(true);
     }
     changeLight(light) {
         // check if white light enters: this should be changed if we want different lights to enter the splitter
