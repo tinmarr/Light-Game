@@ -1,0 +1,85 @@
+{
+    "dims": [11, 9],
+    "startPos": {
+        "pos": [2, 4],
+        "dir": "W",
+        "color": "white"
+    },
+    "level": [
+        {
+            "name": "output",
+            "pos": [6, 4],
+            "lightAccept": "green",
+            "orientation": 0
+        },
+        {
+            "name": "output",
+            "pos": [8, 0],
+            "lightAccept": "blue",
+            "orientation": 0
+        },
+        {
+            "name": "output",
+            "pos": [1, 5],
+            "lightAccept": "red",
+            "orientation": 3
+        },
+        {
+            "name": "mirror",
+            "pos": [1, 4],
+            "orientation": 0
+        },
+        {
+            "name": "mirror",
+            "pos": [1, 3],
+            "orientation": 1
+        },
+        {
+            "name": "stone",
+            "pos": [3, 2]
+        },
+        {
+            "name": "stone",
+            "pos": [3, 4]
+        },
+        {
+            "name": "stone",
+            "pos": [4, 2]
+        },
+        {
+            "name": "stone",
+            "pos": [4, 4]
+        },
+        {
+            "name": "prism",
+            "pos": [5, 3]
+        },
+        {
+            "name": "mirror",
+            "pos": [5, 5],
+            "orientation": 1
+        },
+        {
+            "name": "mirror",
+            "pos": [3, 5],
+            "orientation": 1
+        },
+        {
+            "name": "mirror",
+            "pos": [7, 3],
+            "orientation": 1
+        }
+
+    ],
+    "inventory": [
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror" }
+    ]
+}
