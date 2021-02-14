@@ -83,6 +83,9 @@ function preload() {
     this.load.image('white-out-clear', '/assets/imgs/output/white/OutputWhiteCleared.png');
     this.load.image('white-out-no', '/assets/imgs/output/white/OutputWhiteNoInput.png');
     this.load.image('white-out-wrong', '/assets/imgs/output/white/OutputWhiteWrong.png');
+    // menu
+    this.load.image('back_button', './assets/imgs/back.png');
+    this.load.image('play_button', './assets/imgs/play.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
@@ -101,7 +104,8 @@ function preload() {
 }
 
 function create() {
-    makeLevel(1);
+    menu();
+    // makeLevel(1);
     scene.input.on('dragstart', (pointer, gameObject) => {
         var gridCoords = grid.getGridCoords({ x: gameObject.x, y: gameObject.y });
         var tileClass = gameObject.getData('class');
@@ -253,18 +257,19 @@ function menu() {
     });
 }
 
-function writeText(prompt){
-    let strings = (prompt.match(/.{1,30}/g));
-    var bottomOfScene = { // make way to get this dynamically
-      x:50,
-      y:500,
-    }
-    for(let i = 0; i< strings.length; i++){
-    var txt = scene.add.text(bottomOfScene.x, bottomOfScene.y+30*i, strings[i], { font: '16px Courier', fill: '#00ff00' });
+function writeText(prompt) {
+    let strings = prompt.match(/.{1,30}/g);
+    var bottomOfScene = {
+        // make way to get this dynamically
+        x: 50,
+        y: 500,
+    };
+    for (let i = 0; i < strings.length; i++) {
+        var txt = scene.add.text(bottomOfScene.x, bottomOfScene.y + 30 * i, strings[i], { font: '16px Courier', fill: '#00ff00' });
     }
 }
 
-function makeLevel(levelNumber){
+function makeLevel(levelNumber) {
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
         grid = new Grid(json.dims.h, json.dims.w, 50, 50, tileSize);
