@@ -181,7 +181,9 @@ function update() {
             light.update();
         });
         for (var i = 0; i < outputTiles.length; i++) {
-            win = outputTiles[i];
+            var texture = outputTiles[i].sprite.texture.key;
+            var lastChar = texture[texture.length - 1];
+            win = lastChar == 'r';
         }
         if (win) {
             writeText('You Win!\nGo back to the main menu and move on to the next level!', window.innerWidth / 2, window.innerHeight / 2, 24);
