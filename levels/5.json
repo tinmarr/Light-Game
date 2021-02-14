@@ -159,6 +159,8 @@
         { "name": "mirror" },
         { "name": "mirror", "orientation": 1 },
         { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
         { "name": "prism", "orientation": 0 }
     ]
 }
