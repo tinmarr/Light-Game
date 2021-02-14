@@ -36,6 +36,8 @@ class ColorExtractor extends EmptyTile {
                 [0, -2, 'N'],
                 [1, -1, 'E'],
             ];
+        } else {
+            return;
         }
         var newPos = {
             x0: light.pos.x + posChange[0][0],
@@ -46,13 +48,13 @@ class ColorExtractor extends EmptyTile {
             y2: light.pos.y + posChange[2][1],
         };
         if (this.grid.onBoard(newPos.x0, newPos.y0)) {
-            this.grid.setTile(new Light(newPos.x0, newPos.y0, posChange[0][2], 'red', this.grid));
+            this.grid.setLightTile(newPos.x0, newPos.y0, posChange[0][2], 'red');
         }
         if (this.grid.onBoard(newPos.x1, newPos.y1)) {
-            this.grid.setTile(new Light(newPos.x1, newPos.y1, posChange[1][2], 'green', this.grid));
+            this.grid.setLightTile(newPos.x1, newPos.y1, posChange[1][2], 'green');
         }
         if (this.grid.onBoard(newPos.x2, newPos.y2)) {
-            this.grid.setTile(new Light(newPos.x2, newPos.y2, posChange[2][2], 'blue', this.grid));
+            this.grid.setLightTile(newPos.x2, newPos.y2, posChange[2][2], 'blue');
         }
     }
 }

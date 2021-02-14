@@ -98,11 +98,12 @@ function preload() {
         makeURL('tiles', 'colorFilterTile'),
         makeURL('tiles', 'outputTile'),
         makeURL('', 'inventory'),
+        makeURL('', 'ghostLight'),
     ]);
 
     // music and sound effects
     // this.load.audio("main-menu_music", "assets/main-menu_music.mp3");
-    this.load.audio("change_light", "assets/sounds/Incorrect_3.mp3");
+    this.load.audio('change_light', 'assets/sounds/Incorrect_3.mp3');
 }
 
 function create() {
@@ -215,7 +216,7 @@ function levelSelect() {
     levels = [];
     for (let i = 0; i < 6; i++) {
         var imageSize = 36;
-        levels.push(scene.add.image(10 + i*imageSize, background.displayHeight / 2, 'level_' + i).setDepth(1));
+        levels.push(scene.add.image(10 + i * imageSize, background.displayHeight / 2, 'level_' + i).setDepth(1));
     }
     for (let i = 0; i < 6; i++) {
         levels[i].setInteractive();
@@ -228,6 +229,14 @@ function levelSelect() {
             // console.log("out");
         });
         levels[i].on('pointerup', () => {
+            levels.forEach((level) => {
+                level.off('pointerover');
+                level.off('pointerout');
+                level.off('pointerup');
+            });
+            backButton.off('pointerover');
+            backButton.off('pointerout');
+            backButton.off('pointerup');
             makeLevel(i);
             // level select
         });
@@ -236,14 +245,19 @@ function levelSelect() {
     backButton.setInteractive();
     backButton.on('pointerover', () => {
         backButton.setTint(tintColor);
-        console.log('in');
     });
     backButton.on('pointerout', () => {
         backButton.clearTint();
-        console.log('out');
     });
     backButton.on('pointerup', () => {
-        console.log('out');
+        levels.forEach((level) => {
+            level.off('pointerover');
+            level.off('pointerout');
+            level.off('pointerup');
+        });
+        backButton.off('pointerover');
+        backButton.off('pointerout');
+        backButton.off('pointerup');
         menu();
     });
 }
@@ -255,7 +269,10 @@ function menu() {
     //   loop: true,
     // });
     background = scene.add.image(0, 0, 'inventory-bg').setOrigin(0).setScale(15).setDepth(0); //main-menu_background get rid of setscale
-    let playButton = scene.add.image(background.displayWidth / 2, background.displayHeight / 2, 'play_button').setScale(4).setDepth(1);
+    let playButton = scene.add
+        .image(background.displayWidth / 2, background.displayHeight / 2, 'play_button')
+        .setScale(4)
+        .setDepth(1);
 
     playButton.setInteractive();
     playButton.on('pointerover', () => {
@@ -268,6 +285,9 @@ function menu() {
     });
     playButton.on('pointerup', () => {
         // console.log('out');
+        playButton.off('pointerover');
+        playButton.off('pointerout');
+        playButton.off('pointerup');
         levelSelect();
     });
 }
@@ -285,6 +305,7 @@ function writeText(prompt) {
 }
 
 function makeLevel(levelNumber) {
+    scene.input.pointerOver;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     $.getJSON('levels/' + levelNumber + '.json', (json) => {
         grid = new Grid(json.dims[1], json.dims[0], 50, 50, tileSize);

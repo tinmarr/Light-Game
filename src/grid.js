@@ -20,7 +20,7 @@ class Grid {
         }
     }
     onBoard(x, y) {
-        return 0 <= y && y <= this.dims.h && 0 <= x && x <= this.dims.w;
+        return 0 <= y && y < this.dims.h && 0 <= x && x < this.dims.w;
     }
 
     getPixelCoords(tileCoord) {
@@ -77,17 +77,27 @@ class Grid {
         return neighbours;
     }
 
+    setLightTile(lightx, lighty, dir, color) {
+        var pos = {
+            x: lightx,
+            y: lighty,
+        };
+        var ghostPos = { x: lightx, y: lighty };
+        if (dir == 'N') ghostPos.y++;
+        if (dir == 'S') ghostPos.y--;
+        if (dir == 'E') ghostPos.x--;
+        if (dir == 'W') ghostPos.x++;
+
+        if (this.onBoard(pos.x, pos.y) && this.getTile(pos).constructor.name != EmptyTile.name && !(this.getTile(pos) instanceof Light)) {
+            this.getTile(pos).changeLight(new GhostLight(ghostPos.x, ghostPos.y, dir, color, this));
+        } else if (!(lighty > this.dims.h || lightx > this.dims.w)) {
+            this.tiles[pos.y][pos.x] = new Light(pos.x, pos.y, dir, color, this);
+        }
+    }
+
     setTile(entity) {
         if (!(entity.pos.y > this.dims.h || entity.pos.x > this.dims.w)) {
-            if (
-                !(this.getTile(entity.pos).constructor.name == EmptyTile.name) &&
-                this.getTile(entity.pos) instanceof EmptyTile &&
-                entity instanceof Light
-            ) {
-                this.tiles[entity.pos.y][entity.pos.x].changeLight(entity);
-            } else {
-                this.tiles[entity.pos.y][entity.pos.x] = entity;
-            }
+            this.tiles[entity.pos.y][entity.pos.x] = entity;
         }
     }
     //

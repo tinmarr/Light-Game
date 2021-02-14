@@ -29,7 +29,7 @@ class ColorFliterTile extends EmptyTile {
                 y: this.pos.y + posChange[1],
             };
             if (this.grid.onBoard(newPos.x, newPos.y)) {
-                grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));
+                grid.setLightTile(newPos.x, newPos.y, light.dir, light.color);
             }
         }
     }
