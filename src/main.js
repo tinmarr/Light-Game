@@ -124,7 +124,6 @@ function preload() {
 
 function create() {
     menu();
-    makeLevel(5);
     scene.input.on('dragstart', (pointer, gameObject) => {
         updating = false;
         reset();
