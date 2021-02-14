@@ -28,7 +28,8 @@ var game = new Phaser.Game(config),
     tileSize = 64,
     tintColor = 0x696a6a,
     starterLight,
-    scaleSize = (tileSize - 2) / 16;
+    scaleSize = (tileSize - 2) / 16,
+    win = false;
 
 function preload() {
     scene = this;
@@ -87,6 +88,12 @@ function preload() {
     // menu
     this.load.image('back_button', './assets/imgs/back.png');
     this.load.image('play_button', './assets/imgs/play.png');
+    this.load.image('0', './assets/imgs/Numbers/zero.png');
+    this.load.image('1', './assets/imgs/Numbers/one.png');
+    this.load.image('2', './assets/imgs/Numbers/two.png');
+    this.load.image('3', './assets/imgs/Numbers/three.png');
+    this.load.image('4', './assets/imgs/Numbers/four.png');
+    this.load.image('5', './assets/imgs/Numbers/five.png');
     // Flashlight
     this.load.image('red-flashlight', './assets/imgs/Flashlight/FlashlightRed.png');
     this.load.image('blue-flashlight', './assets/imgs/Flashlight/FlashlightBlue.png');
@@ -159,16 +166,26 @@ function create() {
 function update() {
     if (updating) {
         var toUpdate = [];
+        var outputTiles = [];
         grid.tiles.forEach((layer) => {
             layer.forEach((tile) => {
                 if (tile instanceof Light) {
                     toUpdate.push(tile);
+                }
+                if (tile instanceof OutputTile) {
+                    outputTiles.push(tile);
                 }
             });
         });
         toUpdate.forEach((light) => {
             light.update();
         });
+        for (var i = 0; i < outputTiles.length; i++) {
+            win = outputTiles[i];
+        }
+        if (win) {
+            // win!!
+        }
     }
 }
 
@@ -229,7 +246,7 @@ function levelSelect() {
     levels = [];
     for (let i = 0; i < 6; i++) {
         var imageSize = 36;
-        levels.push(scene.add.image(10 + i * imageSize, background.displayHeight / 2, 'level_' + i).setDepth(1));
+        levels.push(scene.add.image(10 + i * imageSize, background.displayHeight / 2, '' + i).setDepth(1));
     }
     for (let i = 0; i < 6; i++) {
         levels[i].setInteractive();
@@ -334,15 +351,19 @@ function makeLevel(levelNumber) {
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'prism') {
-                temp = new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0)
+                temp = new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'filter') {
-                temp = new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color, tile.orientation || 0);
+                temp = new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'output') {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
+            } else if (tile.name == 'filter') {
+                temp = new FlashlightTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             }
         });
         let backButton = scene.add.image(10, 10, 'back_button').setOrigin(0).setScale(2).setDepth(1);
