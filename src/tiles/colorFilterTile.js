@@ -21,6 +21,8 @@ class ColorFliterTile extends EmptyTile {
                 var posChange = [-1, 0];
             } else if (this.orientation == 3 && light.dir == 'N') {
                 var posChange = [0, -1];
+            } else {
+                return;
             }
             var newPos = {
                 x: this.pos.x + posChange[0],

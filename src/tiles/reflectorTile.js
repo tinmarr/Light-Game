@@ -28,7 +28,6 @@ class ReflectorTile extends EmptyTile {
             x: light.pos.x + posChange[dirs.indexOf(light.dir)][0],
             y: light.pos.y + posChange[dirs.indexOf(light.dir)][1],
         };
-        console.log(newPos.x, newPos.y);
         if (this.grid.onBoard(newPos.x, newPos.y)) {
             // this needs to be fixed
             this.grid.setTile(new Light(newPos.x, newPos.y, posChange[dirs.indexOf(light.dir)][2], light.color, this.grid));
