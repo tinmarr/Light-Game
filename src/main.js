@@ -104,8 +104,7 @@ function preload() {
     // music and sound effects
     // this.load.audio("main-menu_music", "assets/main-menu_music.mp3");
     this.load.audio('incorrect', 'assets/sounds/Incorrect_3.mp3');
-    this.load.audio('correct', 'assets/sounds/Correct_1.mp3')
-
+    this.load.audio('correct', 'assets/sounds/Correct_1.mp3');
 }
 
 function create() {
@@ -128,8 +127,10 @@ function create() {
     scene.input.on('dragend', (pointer, gameObject) => {
         var pixelCoord = { x: gameObject.x, y: gameObject.y };
         var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
-        gameObject.x = newcoords.x;
-        gameObject.y = newcoords.y;
+        if (newcoords != null) {
+            gameObject.x = newcoords.x;
+            gameObject.y = newcoords.y;
+        }
         var gridCoords = grid.getGridCoords({ x: gameObject.x, y: gameObject.y });
         var tileClass = gameObject.getData('class');
         if (gridCoords == null) {
