@@ -38,8 +38,8 @@ class Grid {
     getGridCoords(pixelCoord) {
         //       --------------bug: can still be put on other elements on the grid
         var tileCoord = { x: null, y: null };
-        tileCoord.x = Math.ceil((pixelCoord.x - this.pos.x) / this.tileSize);
-        tileCoord.y = Math.ceil((pixelCoord.y - this.pos.y) / this.tileSize);
+        tileCoord.x = Math.ceil((pixelCoord.x - tileSize / 2 - this.pos.x) / this.tileSize);
+        tileCoord.y = Math.ceil((pixelCoord.y - tileSize / 2 - this.pos.y) / this.tileSize);
         if (tileCoord.x > this.dims.w - 1) {
             tileCoord = null;
             return;
