@@ -24,7 +24,7 @@ var game = new Phaser.Game(config),
     scene,
     updating = false,
     start = { x: 0, y: 0 },
-    tileSize = 34,
+    tileSize = 50,
     tintColor = 0x696a6a,
     starterLight,
     scaleSize = (tileSize - 2) / 16;
@@ -104,9 +104,11 @@ function preload() {
 }
 
 function create() {
-    menu();
-    // makeLevel(1);
+    // menu();
+    makeLevel(1);
     scene.input.on('dragstart', (pointer, gameObject) => {
+        updating = false;
+        reset();
         var gridCoords = grid.getGridCoords({ x: gameObject.x, y: gameObject.y });
         var tileClass = gameObject.getData('class');
         if (gridCoords != null) {
@@ -139,6 +141,8 @@ function create() {
             tileClass.grid = grid;
             grid.setTile(tileClass);
         }
+        reset();
+        updating = true;
     });
 }
 
@@ -158,6 +162,26 @@ function update() {
     }
 }
 
+function reset() {
+    newList = [];
+    scene.children.getChildren().forEach((sprite) => {
+        if (sprite.getData('type') != 'light') {
+            newList.push(sprite);
+        }
+    });
+    grid.tiles.forEach((layer) => {
+        layer.forEach((tile) => {
+            if (tile instanceof Light) {
+                grid.setTile(new EmptyTile(tile.pos.x, tile.pos.y, grid, tileSize));
+            }
+            if (tile instanceof OutputTile) tile.reset();
+        });
+    });
+    grid.setTile(starterLight);
+    newList.push(starterLight.sprite);
+    scene.children.list = newList;
+}
+
 function makeURL(folder, file) {
     if (folder === '') {
         var name = file;
@@ -169,26 +193,7 @@ function makeURL(folder, file) {
 
 function keyBinds(e) {
     if (e.key == ' ') {
-        if (updating) {
-            updating = false;
-            newList = [];
-            scene.children.getChildren().forEach((sprite) => {
-                if (sprite.getData('type') != 'light') {
-                    newList.push(sprite);
-                }
-            });
-            grid.tiles.forEach((layer) => {
-                layer.forEach((tile) => {
-                    if (tile instanceof Light) {
-                        grid.setTile(new EmptyTile(tile.pos.x, tile.pos.y, grid, tileSize));
-                    }
-                    if (tile instanceof OutputTile) tile.reset();
-                });
-            });
-            grid.setTile(starterLight);
-            newList.push(starterLight.sprite);
-            scene.children.list = newList;
-        } else {
+        if (!updating) {
             updating = true;
         }
     }
