@@ -1,0 +1,75 @@
+{
+    "dims": [11, 11],
+    "startPos": {
+        "pos": [0, 0],
+        "dir": "E",
+        "color": "white"
+    },
+    "level": [
+        {
+            "name": "flashlight",
+            "pos": [10, 10],
+            "color": "blue",
+            "orientation": 0
+        },
+        {
+            "name": "flashlight",
+            "pos": [0, 10],
+            "color": "green",
+            "orientation": 1
+        },
+        {
+            "name": "flashlight",
+            "pos": [0, 0],
+            "color": "white",
+            "orientation": 1
+        },
+        {
+            "name": "flashlight",
+            "pos": [10, 0],
+            "color": "red",
+            "orientation": 2
+        },
+        {
+            "name": "output",
+            "pos": [5, 5],
+            "lightAccept": "white",
+            "orientation": 3
+        },
+        {
+            "name": "output",
+            "pos": [5, 8],
+            "lightAccept": "green",
+            "orientation": 3
+        },
+        {
+            "name": "output",
+            "pos": [8, 6],
+            "lightAccept": "blue",
+            "orientation": 3
+        },
+        {
+            "name": "output",
+            "pos": [7, 9],
+            "lightAccept": "red",
+            "orientation": 3
+        }
+    ],
+    "inventory": [
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror", "orientation": 1 }
+    ]
+}
