@@ -1,53 +1,31 @@
 {
-    "dims":[20,10],
+    "dims":[7,20],
     "startPos":{
-        "pos": [0,0],
-        "dir": "E",
-        "color": "white"
+        "pos":[1,0],
+        "dir":"S",
+        "color":"white"
     },
     "level":[
         {
-            "tileType": "mirror",
-            "pos":[4,0],
-            "orientation": 0
+            "name": "output",
+            "pos":[2,6],
+            "lightAccept": "red",
+            "orientation":1
         },
         {
-            "tileType": "stone",
-            "pos":[5,5]
+            "name":"mirror",
+            "pos":[6,2]
         },
         {
-            "tileType": "extractor",
-            "pos":[4,7],
-            "orientation": 1
-        },
-        {
-            "tileType": "filter",
-            "pos":[10,5],
-            "color": "white",
-            "orientation": 1
-        },
-        {
-            "tileType": "output",
-            "pos":[0,7],
-            "lightAccept": "blue",
-            "orientation": 0
-        },
-        {
-            "tileType": "extractor",
-            "pos":[7,0],
-            "orientation": 2
-        },
-        {
-            "tileType": "mirror",
-            "pos":[10,3],
-            "orientation": 1
+            "name":"mirror",
+            "pos":[0,9],
+            "orientation":1
         }
-
-
     ],
     "inventory":[
-        "mirror",
-        "mirror",
-        "extractor"
+        {"name":"mirror","orientation":1},
+        {"name":"mirror"},
+        {"name":"mirror"},
+        {"name":"prism"}
     ]
 }
