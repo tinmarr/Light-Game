@@ -82,10 +82,14 @@ class Grid {
             x: lightx,
             y: lighty,
         };
-        if (!(lighty > this.dims.h || lightx > this.dims.w) && this.getTile(pos).constructor.name != EmptyTile.name) {
+        if (
+            !(lighty > this.dims.h || lightx > this.dims.w) &&
+            this.getTile(pos).constructor.name != EmptyTile.name &&
+            !(this.getTile(pos) instanceof Light)
+        ) {
             this.getTile(pos).changeLight(new GhostLight(pos.x, pos.y, dir, color, this));
         } else if (!(lighty > this.dims.h || lightx > this.dims.w)) {
-            this.getTile(pos).changeLight(new Light(pos.x, pos.y, dir, color, this));
+            this.tiles[pos.y][pos.x] = new Light(pos.x, pos.y, dir, color, this);
         }
     }
 
