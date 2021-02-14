@@ -68,21 +68,21 @@ function preload() {
     this.load.image('white-filter', './assets/imgs/Filter/WhiteFilter.png');
     // ouputs
     //   blue
-    this.load.image('blue-out-clear', '/assets/imgs/output/blue/OutputBlueCleared.png');
-    this.load.image('blue-out-no', '/assets/imgs/output/blue/OutputBlueNoInput.png');
-    this.load.image('blue-out-wrong', '/assets/imgs/output/blue/OutputBlueWrong.png');
+    this.load.image('blue-out-clear', './assets/imgs/output/blue/OutputBlueCleared.png');
+    this.load.image('blue-out-no', './assets/imgs/output/blue/OutputBlueNoInput.png');
+    this.load.image('blue-out-wrong', './assets/imgs/output/blue/OutputBlueWrong.png');
     //   green
-    this.load.image('green-out-clear', '/assets/imgs/output/green/OutputGreenCleared.png');
-    this.load.image('green-out-no', '/assets/imgs/output/green/OutputGreenNoInput.png');
-    this.load.image('green-out-wrong', '/assets/imgs/output/green/OutputGreenWrong.png');
+    this.load.image('green-out-clear', './assets/imgs/output/green/OutputGreenCleared.png');
+    this.load.image('green-out-no', './assets/imgs/output/green/OutputGreenNoInput.png');
+    this.load.image('green-out-wrong', './assets/imgs/output/green/OutputGreenWrong.png');
     //   red
-    this.load.image('red-out-clear', '/assets/imgs/output/red/OutputRedCleared.png');
-    this.load.image('red-out-no', '/assets/imgs/output/red/OutputRedNoInput.png');
-    this.load.image('red-out-wrong', '/assets/imgs/output/red/OutputRedWrong.png');
+    this.load.image('red-out-clear', './assets/imgs/output/red/OutputRedCleared.png');
+    this.load.image('red-out-no', './assets/imgs/output/red/OutputRedNoInput.png');
+    this.load.image('red-out-wrong', './assets/imgs/output/red/OutputRedWrong.png');
     //   white
-    this.load.image('white-out-clear', '/assets/imgs/output/white/OutputWhiteCleared.png');
-    this.load.image('white-out-no', '/assets/imgs/output/white/OutputWhiteNoInput.png');
-    this.load.image('white-out-wrong', '/assets/imgs/output/white/OutputWhiteWrong.png');
+    this.load.image('white-out-clear', './assets/imgs/output/white/OutputWhiteCleared.png');
+    this.load.image('white-out-no', './assets/imgs/output/white/OutputWhiteNoInput.png');
+    this.load.image('white-out-wrong', './assets/imgs/output/white/OutputWhiteWrong.png');
     // menu
     this.load.image('back_button', './assets/imgs/back.png');
     this.load.image('play_button', './assets/imgs/play.png');
@@ -102,7 +102,6 @@ function preload() {
     // music and sound effects
     // this.load.audio("main-menu_music", "assets/main-menu_music.mp3");
     // this.load.audio("change_light", "assets/change_light.mp3")
-
 }
 
 function create() {
