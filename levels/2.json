@@ -1,0 +1,40 @@
+{
+    "dims":[11,7],
+    "startPos":{
+        "pos":[1,0],
+        "dir":"E",
+        "color":"white"
+    },
+    "level":[
+        {
+            "name": "output",
+            "pos":[9,6],
+            "lightAccept": "green",
+            "orientation":3
+        },
+        {
+            "name":"mirror",
+            "pos":[2,4]
+        },
+        {
+            "name":"mirror",
+            "pos":[4,0],
+            "orientation": 0
+        },
+        {
+            "name":"filter",
+            "pos":[3,4],
+            "color": "green"
+        },
+        {
+            "name":"stone",
+            "pos":[2,1]
+        }
+    ],
+    "inventory":[
+        {"name":"mirror","orientation":1},
+        {"name":"mirror","orientation":1},
+        {"name":"mirror"},
+        {"name":"prism"}
+    ]
+}
