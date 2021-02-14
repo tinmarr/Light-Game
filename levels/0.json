@@ -1,0 +1,21 @@
+{
+    "dims":[5,5],
+    "startPos":{
+        "pos":[0,1],
+        "dir":"E",
+        "color":"white"
+    },
+    "level":[
+        {
+            "name": "output",
+            "pos":[0,3],
+            "lightAccept": "blue",
+            "orientation":0
+        }
+    ],
+    "inventory":[
+        {"name":"mirror","orientation":0},
+        {"name":"prism", "orientation":1},
+        {"name":"filter", "color": "white", "orientation": 2}
+    ]
+}

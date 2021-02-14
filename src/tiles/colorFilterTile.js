@@ -5,9 +5,14 @@ class ColorFliterTile extends EmptyTile {
         this.color = color;
         this.orientation = orientation; // the orientation refers to the white light position
         // 0: left  1: top  2: right  3: bottom
-        if (this.orientation == 1) this.sprite.angle = 90;
-        if (this.orientation == 3) this.sprite.angle = -90;
-        if (this.orientation == 2) this.sprite.setFlipY(true);
+        if (this.orientation == 1) {
+          this.sprite.angle = 90;
+        }
+        if (this.orientation == 3) {
+          this.sprite.angle = -90;
+        }
+        if (this.orientation == 2) {
+          this.sprite.setRotation(Math.PI);}
     }
 
     changeLight(light) {

@@ -239,7 +239,33 @@ function keyBinds(e) {
         }
     }
 }
+var txt;
+function level0(){
+    makeLevel(0);
+    var instructions_index = 0;
+    Instructions = [
+      "Press Space to start and retract light",
+      "Drag a mirror from your right to interact with light (try row: 2, col: 5)",
+      "The Color splitter takes in white light and outputs the rest (try row: 4, col: 5)",
+      "The filter only lets a certain color pass (try row: 4, col:3 see how it blocks light)",
+      "The output requires a certain color from a certain direction if you followed instrusction you should have won"
+    ]
+    txt = scene.add.text(400, 10, "Next Instruction", { font: '16px Courier', fill: '#00ff00' });
+    txt.setInteractive();
+    // this.add.text(350, 250, '', { font: '16px Courier', fill: '#00ff00' });
+    txt.on('pointerover', () => {
+        levels[0].setTint(tintColor);
+    });
+    txt.on('pointerout', () => {
+        levels[0].clearTint();
+    });
+    txt.on('pointerup', () => {
+        console.log("here");
+        writeText(Instructions[instructions_index], 400, 40 + instructions_index*100, 16);
+        instructions_index ++;
+    });
 
+}
 function levelSelect() {
     try {
         updating = false;
@@ -274,6 +300,7 @@ function levelSelect() {
         backButton.off('pointerover');
         backButton.off('pointerout');
         backButton.off('pointerup');
+
         level0();
         // level select
     });
@@ -412,6 +439,11 @@ function makeLevel(levelNumber) {
         let backButton = scene.add.image(10, 10, 'back_button').setOrigin(0).setScale(2).setDepth(1);
         backButton.setInteractive();
         backButton.on('pointerup', () => {
+            if(levelNumber == 0){
+              txt.off('pointerover');
+              txt.off('pointerout');
+              txt.off('pointerup');
+            }
             backButton.off('pointerover');
             backButton.off('pointerout');
             backButton.off('pointerup');
