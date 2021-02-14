@@ -49,7 +49,7 @@
                 "y": 7
             },
             "lightAccept": "blue",
-            "orientation": 1
+            "orientation": 0
         },
         {
             "tileType": "extractor",
