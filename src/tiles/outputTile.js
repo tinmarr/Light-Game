@@ -21,7 +21,7 @@ class OutputTile extends EmptyTile {
     }
     changeLight(light) {
         // check if white light enters: this should be changed if we want different lights to enter the splitter
-        if (light.color == this.lightAccept && correctOrientation(light.dir)) {
+        if (light.color == this.lightAccept && this.correctOrientation(light.dir)) {
             this.sprite.setTexture(this.lightAccept + '-out-clear');
             return;
         } else {
