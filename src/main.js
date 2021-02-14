@@ -124,6 +124,7 @@ function preload() {
 
 function create() {
     menu();
+    makeLevel(5);
     scene.input.on('dragstart', (pointer, gameObject) => {
         updating = false;
         reset();
@@ -142,10 +143,20 @@ function create() {
     scene.input.on('dragend', (pointer, gameObject) => {
         var pixelCoord = { x: gameObject.x, y: gameObject.y };
         var newcoords = grid.getPixelCoords(grid.getGridCoords(pixelCoord));
+        // if (grid.getTile(grid.getGridCoords(pixelCoord)).constructor.name != EmptyTile.name) {
+        //     var neighbors = grid.getNeighbors(newcoords.x, newcoords.y);
+        //     for (var i = 0; i < neighbors.length; i++) {
+        //         neighborsCoords = { x: neighbors[i][0], y: neighbors[i][1] };
+        //         if (grid.getTile(neighborsCoords).constructor.name == EmptyTile.name) {
+        //             newcoords = grid.getPixelCoords(neighborsCoords);
+        //         }
+        //     }
+        // }
         if (newcoords != null) {
             gameObject.x = newcoords.x;
             gameObject.y = newcoords.y;
         }
+
         var gridCoords = grid.getGridCoords({ x: gameObject.x, y: gameObject.y });
         var tileClass = gameObject.getData('class');
         if (gridCoords == null) {
@@ -188,7 +199,12 @@ function update() {
             win = lastChar == 'r';
         }
         if (win) {
-            writeText('You Win!\nGo back to the main menu and move on to the next level!', window.innerWidth / 2 + 40, window.innerHeight / 2 + 50, 24);
+            writeText(
+                'You Win!\nGo back to the main menu and move on to the next level!',
+                window.innerWidth / 2 + 40,
+                window.innerHeight / 2 + 50,
+                24
+            );
         }
     }
 }
