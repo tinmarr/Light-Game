@@ -1,0 +1,164 @@
+{
+    "dims": [12, 10],
+    "startPos": {
+        "pos": [0, 0],
+        "dir": "E",
+        "color": "white"
+    },
+    "level": [
+        {
+            "name": "stone",
+            "pos": [0, 1]
+        },
+        {
+            "name": "stone",
+            "pos": [0, 2]
+        },
+        {
+            "name": "stone",
+            "pos": [0, 3]
+        },
+        {
+            "name": "stone",
+            "pos": [0, 4]
+        },
+        {
+            "name": "stone",
+            "pos": [1, 6]
+        },
+        {
+            "name": "stone",
+            "pos": [1, 7]
+        },
+        {
+            "name": "stone",
+            "pos": [1, 8]
+        },
+        {
+            "name": "stone",
+            "pos": [2, 0]
+        },
+        {
+            "name": "stone",
+            "pos": [2, 1]
+        },
+        {
+            "name": "stone",
+            "pos": [2, 2]
+        },
+        {
+            "name": "stone",
+            "pos": [2, 3]
+        },
+        {
+            "name": "stone",
+            "pos": [2, 4]
+        },
+        {
+            "name": "stone",
+            "pos": [3, 7]
+        },
+        {
+            "name": "stone",
+            "pos": [3, 8]
+        },
+        {
+            "name": "mirror",
+            "pos": [4, 6],
+            "orientation": 0
+        },
+        {
+            "name": "filter",
+            "pos": [5, 5],
+            "color": "green",
+            "orientation": 0
+        },
+        {
+            "name": "filter",
+            "pos": [5, 9],
+            "color": "blue",
+            "orientation": 0
+        },
+        {
+            "name": "filter",
+            "pos": [5, 0],
+            "color": "red",
+            "orientation": 0
+        },
+        {
+            "name": "mirror",
+            "pos": [1, 0],
+            "orientation": 0
+        },
+        {
+            "name": "mirror",
+            "pos": [4, 0],
+            "orientation": 1
+        },
+        {
+            "name": "stone",
+            "pos": [5, 1]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 2]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 3]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 4]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 6]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 7]
+        },
+        {
+            "name": "stone",
+            "pos": [5, 8]
+        },
+        {
+            "name": "flashlight",
+            "pos": [11, 4],
+            "color": "white",
+            "orientation": 3
+        },
+        {
+            "name": "output",
+            "pos": [6, 7],
+            "lightAccept": "white",
+            "orientation": 3
+        },
+        {
+            "name": "output",
+            "pos": [11, 0],
+            "lightAccept": "red",
+            "orientation": 2
+        },
+        {
+            "name": "output",
+            "pos": [11, 5],
+            "lightAccept": "green",
+            "orientation": 2
+        },
+        {
+            "name": "output",
+            "pos": [11, 9],
+            "lightAccept": "blue",
+            "orientation": 2
+        }
+    ],
+    "inventory": [
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "mirror", "orientation": 1 },
+        { "name": "mirror" },
+        { "name": "prism", "orientation": 0 }
+    ]
+}
