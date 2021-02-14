@@ -29,6 +29,8 @@ class Light {
             return;
         }
         if (!(this.grid.getTile(newPos) instanceof Light)) {
+            if (this.grid.getTile(newPos) instanceof EmptyTile) {
+            }
             this.grid.getTile(newPos).changeLight(this);
         }
     }
