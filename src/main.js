@@ -117,7 +117,7 @@ function preload() {
     ]);
 
     // music and sound effects
-    // this.load.audio("main-menu_music", "assets/main-menu_music.mp3");
+    this.load.audio("main-menu_music", "assets/sounds/looping_track.mp3");
     this.load.audio('incorrect', 'assets/sounds/Incorrect_3.mp3');
     this.load.audio('correct', 'assets/sounds/Correct_1.mp3');
 }
@@ -360,7 +360,7 @@ function levelSelect() {
         menu();
     });
 }
-
+var musicStarted = false;
 function menu() {
     try {
         updating = false;
@@ -370,9 +370,13 @@ function menu() {
     grid = null;
     scene.children.getChildren().splice(0, scene.children.getChildren().length); // clear canvas
     scene.sound.pauseOnBlur = false;
-    // scene.sound.play("main-menu_music", {  --- uncomment when music is available
-    //   loop: true,
-    // });
+    if(!musicStarted){
+        scene.sound.play("main-menu_music", {
+          loop: true,
+          volume: .2,
+        });
+        musicStarted = true;
+    }
     background = scene.add.image(0, 0, 'inventory-bg').setOrigin(0).setScale(15).setDepth(0); //main-menu_background get rid of setscale
     var txt = scene.add.text(background.displayWidth / 2-80, background.displayHeight / 2 - 100, "Game.lite", { font: '32px Courier', fill: '#00ff00' });
 
