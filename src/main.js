@@ -28,7 +28,8 @@ var game = new Phaser.Game(config),
     tileSize = 64,
     tintColor = 0x696a6a,
     starterLight,
-    scaleSize = (tileSize - 2) / 16;
+    scaleSize = (tileSize - 2) / 16,
+    win = false;
 
 function preload() {
     scene = this;
@@ -159,16 +160,26 @@ function create() {
 function update() {
     if (updating) {
         var toUpdate = [];
+        var outputTiles = [];
         grid.tiles.forEach((layer) => {
             layer.forEach((tile) => {
                 if (tile instanceof Light) {
                     toUpdate.push(tile);
+                }
+                if (tile instanceof OutputTile) {
+                    outputTiles.push(tile);
                 }
             });
         });
         toUpdate.forEach((light) => {
             light.update();
         });
+        for (var i = 0; i < outputTiles.length; i++) {
+            win = outputTiles[i];
+        }
+        if (win) {
+            // win!!
+        }
     }
 }
 
@@ -334,15 +345,19 @@ function makeLevel(levelNumber) {
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'prism') {
-                temp = new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0)
+                temp = new ColorExtractor(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'filter') {
-                temp = new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color, tile.orientation || 0);
+                temp = new ColorFliterTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
                 temp.sprite.setTint(tintColor);
                 grid.setTile(temp);
             } else if (tile.name == 'output') {
                 grid.setTile(new OutputTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.orientation || 0, tile.lightAccept));
+            } else if (tile.name == 'filter') {
+                temp = new FlashlightTile(tile.pos[0], tile.pos[1], grid, tileSize, tile.color || 'white', tile.orientation || 0);
+                temp.sprite.setTint(tintColor);
+                grid.setTile(temp);
             }
         });
         inv = new Inventory({ x: window.innerWidth - 192 / 2, y: 768 / 2 }, json.inventory);
