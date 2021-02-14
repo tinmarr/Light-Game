@@ -359,6 +359,8 @@ function menu() {
     //   loop: true,
     // });
     background = scene.add.image(0, 0, 'inventory-bg').setOrigin(0).setScale(15).setDepth(0); //main-menu_background get rid of setscale
+    var txt = scene.add.text(background.displayWidth / 2-80, background.displayHeight / 2 - 100, "Game.lite", { font: '32px Courier', fill: '#00ff00' });
+
     let playButton = scene.add
         .image(background.displayWidth / 2, background.displayHeight / 2, 'play_button')
         .setScale(4)
