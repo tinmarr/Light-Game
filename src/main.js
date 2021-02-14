@@ -188,7 +188,7 @@ function update() {
             win = lastChar == 'r';
         }
         if (win) {
-            writeText('You Win!\nGo back to the main menu and move on to the next level!', window.innerWidth / 2, window.innerHeight / 2, 24);
+            writeText('You Win!\nGo back to the main menu and move on to the next level!', window.innerWidth / 2 + 40, window.innerHeight / 2 + 50, 24);
         }
     }
 }
