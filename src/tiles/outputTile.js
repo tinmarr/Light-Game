@@ -1,6 +1,6 @@
 class OutputTile extends EmptyTile{
-    constructor(x, y, grid, tileSize, orientation, lightAccept='white'){
-        super(x, y, grid, tileSize);
+    constructor(x, y, grid, tileSize, orientation, lightAccept='white', pixelCoords = null){
+        super(x, y, grid, tileSize, pixelCoords);
         this.sprite.setTexture('output-tile-withoutlight');
         this.sprite.setScale(0.5);
         this.orientation = orientation; // the orientation refers to the white light position
