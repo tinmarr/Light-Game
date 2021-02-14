@@ -1,8 +1,7 @@
-class ColorExtractor extends EmptyTile{
-    constructor(x, y, grid, tileSize, orientation, pixelCoords = null){
+class ColorExtractor extends EmptyTile {
+    constructor(x, y, grid, tileSize, orientation, pixelCoords = null) {
         super(x, y, grid, tileSize, pixelCoords);
         this.sprite.setTexture('extractor-tile');
-        this.sprite.setScale(2);
         this.orientation = orientation; // the orientation refers to the white light position
         // 0: left  1: top  2: right  3: bottom
         if (this.orientation == 1) this.sprite.angle = 90;

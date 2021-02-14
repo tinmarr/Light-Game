@@ -1,7 +1,7 @@
-class ColorFliterTile extends EmptyTile{
-    constructor(x, y, grid, tileSize, color, orientation, pixelCoords = null){
+class ColorFliterTile extends EmptyTile {
+    constructor(x, y, grid, tileSize, color, orientation, pixelCoords = null) {
         super(x, y, grid, tileSize, pixelCoords);
-        this.sprite.setTexture(''); // TODO
+        this.sprite.setTexture(color + '-filter'); // TODO
         this.color = color;
         this.orientation = orientation; // the orientation refers to the white light position
         // 0: left  1: top  2: right  3: bottom
@@ -14,16 +14,13 @@ class ColorFliterTile extends EmptyTile{
         super.change_sound();
         if (this.color == light.color){
             if (this.orientation == 0 && light.dir == 'E') {
-                var posChange = [1,0];
-            }
-            else if (this.orientation == 1 && light.dir == 'S') {
-                var posChange = [0,1];
-            }
-            else if (this.orientation == 2 && light.dir == 'W'){
-                var posChange = [-1,0];
-            }
-            else if(this.orientation == 3 && light.dir == 'N'){
-                var posChange = [0,-1];
+                var posChange = [1, 0];
+            } else if (this.orientation == 1 && light.dir == 'S') {
+                var posChange = [0, 1];
+            } else if (this.orientation == 2 && light.dir == 'W') {
+                var posChange = [-1, 0];
+            } else if (this.orientation == 3 && light.dir == 'N') {
+                var posChange = [0, -1];
             }
             var newPos = {
                 x: this.pos.x + posChange[0],
