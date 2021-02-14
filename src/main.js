@@ -101,7 +101,7 @@ function preload() {
 
     // music and sound effects
     // this.load.audio("main-menu_music", "assets/main-menu_music.mp3");
-    // this.load.audio("change_light", "assets/change_light.mp3")
+    this.load.audio("change_light", "assets/sounds/Incorrect_3.mp3");
 }
 
 function create() {

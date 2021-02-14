@@ -9,7 +9,7 @@ class EmptyTile {
         this.sprite.setScale(scaleSize);
     }
     change_sound(){
-      // scene.sound.play("change_light");
+      scene.sound.play("change_light", {volume: 1});
     }
     changeLight(light){
       grid.setTile(new Light(this.pos.x, this.pos.y, light.dir, light.color, this.grid));
