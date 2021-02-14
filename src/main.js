@@ -60,7 +60,7 @@ function preload() {
     this.load.image('extractor-tile', './assets/imgs/extractor.png');
     this.load.image('stone-tile', './assets/imgs/stone.png');
     //inventory bg
-    this.load.image('inventory-bg', './assets/imgs/inventory-bg.png');
+    this.load.image('inventory-bg', './assets/imgs/Inventory.png');
     //Filters
     this.load.image('blue-filter', './assets/imgs/Filter/BlueFilter.png');
     this.load.image('green-filter', './assets/imgs/Filter/GreenFilter.png');
