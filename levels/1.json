@@ -28,6 +28,7 @@
         {"name":"mirror"},
         {"name":"prism"},
         {"name":"stone"},
-        {"name":"filter"}
+        {"name":"filter", "color": "white"},
+        {"name":"filter", "color": "blue"}
     ]
 }

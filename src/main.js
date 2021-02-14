@@ -202,6 +202,7 @@ function keyBinds(e) {
             updating = true;
         } else {
             liveupdate = false;
+            updating = false;
             reset();
         }
     }
