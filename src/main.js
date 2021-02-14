@@ -51,16 +51,38 @@ function preload() {
 
     this.load.image('empty-tile', './assets/imgs/BaseBack.png');
     // load light colors
-    this.load.image('white-light', './assets/white-light.png');
-    this.load.image('red-light', './assets/red-light.png');
-    this.load.image('green-light', './assets/green-light.png');
-    this.load.image('blue-light', './assets/blue-light.png');
+    this.load.image('white-light', './assets/imgs/Light/WhiteLight.png');
+    this.load.image('red-light', './assets/imgs/Light/RedLight.png');
+    this.load.image('green-light', './assets/imgs/Light/GreenLight.png');
+    this.load.image('blue-light', './assets/imgs/Light/BlueLight.png');
     //load tiles
-    this.load.image('reflector-tile', './assets/reflector.png');
-    this.load.image('extractor-tile', './assets/extractor.png');
+    this.load.image('reflector-tile', './assets/imgs/reflector.png');
+    this.load.image('extractor-tile', './assets/imgs/extractor.png');
     this.load.image('stone-tile', './assets/imgs/stone.png');
     //inventory bg
-    this.load.image('inventory-bg', './assets/inventory-bg.png');
+    this.load.image('inventory-bg', './assets/imgs/inventory-bg.png');
+    //Filters
+    this.load.image('blue-filter', './assets/imgs/Filter/BlueFilter.png');
+    this.load.image('green-filter', './assets/imgs/Filter/GreenFilter.png');
+    this.load.image('red-filter', './assets/imgs/Filter/RedFilter.png');
+    this.load.image('white-filter', './assets/imgs/Filter/WhiteFilter.png');
+    // ouputs
+    //   blue
+    this.load.image('blue-out-clear', '/assets/imgs/output/blue/OutputBlueCleared.png');
+    this.load.image('blue-out-no', '/assets/imgs/output/blue/OutputBlueNoInput.png');
+    this.load.image('blue-out-wrong', '/assets/imgs/output/blue/OutputBlueWrong.png');
+    //   green
+    this.load.image('green-out-clear', '/assets/imgs/output/green/OutputGreenCleared.png');
+    this.load.image('green-out-no', '/assets/imgs/output/green/OutputGreenNoInput.png');
+    this.load.image('green-out-wrong', '/assets/imgs/output/green/OutputGreenWrong.png');
+    //   red
+    this.load.image('red-out-clear', '/assets/imgs/output/red/OutputRedCleared.png');
+    this.load.image('red-out-no', '/assets/imgs/output/red/OutputRedNoInput.png');
+    this.load.image('red-out-wrong', '/assets/imgs/output/red/OutputRedWrong.png');
+    //   white
+    this.load.image('white-out-clear', '/assets/imgs/output/white/OutputWhiteCleared.png');
+    this.load.image('white-out-no', '/assets/imgs/output/white/OutputWhiteNoInput.png');
+    this.load.image('white-out-wrong', '/assets/imgs/output/white/OutputWhiteWrong.png');
 
     this.load.scripts('all', [
         makeURL('tiles', 'emptyTile'),
