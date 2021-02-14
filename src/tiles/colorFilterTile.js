@@ -11,6 +11,7 @@ class ColorFliterTile extends EmptyTile{
     }
 
     changeLight(light){
+        super.change_sound();
         if (this.color == light.color){
             if (this.orientation == 0 && light.dir == 'E') {
                 var posChange = [1,0];
@@ -28,7 +29,8 @@ class ColorFliterTile extends EmptyTile{
                 x: this.pos.x + posChange[0],
                 y: this.pos.y + posChange[1],
             };
-            grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));
-        }   
+            if(this.grid.onBoard(newPos.x, newPos.y)){
+            grid.setTile(new Light(newPos.x, newPos.y, light.dir, light.color, this.grid));}
+        }
     }
 }
