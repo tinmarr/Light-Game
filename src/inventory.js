@@ -23,12 +23,12 @@ class Inventory {
         var pixelCoords = { x: pixelX, y: pixelY };
 
         var tile;
-        if (item == 'reflector') {
-            tile = new ReflectorTile(null, null, null, tileSize, 0, pixelCoords);
-        } else if (item == 'extractor') {
-            tile = new ColorExtractor(null, null, null, tileSize, 0, pixelCoords);
-        } else if (item == 'filter') {
-            tile = new ColorFliterTile(null, null, null, tileSize, 'white', 0, pixelCoords);
+        if (item.name == 'mirror') {
+            tile = new ReflectorTile(null, null, null, tileSize, item.orientation || 0, pixelCoords);
+        } else if (item.name == 'prism') {
+            tile = new ColorExtractor(null, null, null, tileSize, item.orientation || 0, pixelCoords);
+        } else if (item.name == 'filter') {
+            tile = new ColorFliterTile(null, null, null, tileSize, 'white', item.orientation || 0, pixelCoords);
         }
         tile.sprite.setInteractive();
         scene.input.setDraggable(tile.sprite);
