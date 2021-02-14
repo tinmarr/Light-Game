@@ -9,9 +9,11 @@ class OutputTile extends EmptyTile {
         if (this.orientation == 2) this.sprite.setFlipX(true);
 
         this.lightAccept = lightAccept;
+        this.firstLight = true;
     }
     reset() {
         this.sprite.setTexture(this.lightAccept + '-out-no');
+        this.firstLight = true;
     }
     correctOrientation(lightDir) {
         if (this.orientation == 0) return lightDir == 'W';
@@ -23,9 +25,17 @@ class OutputTile extends EmptyTile {
         // check if white light enters: this should be changed if we want different lights to enter the splitter
         if (light.color == this.lightAccept && this.correctOrientation(light.dir)) {
             this.sprite.setTexture(this.lightAccept + '-out-clear');
+            if(this.firstLight){
+              scene.sound.play("correct");
+              this.firstLight = false;
+            }
             return;
         } else {
             this.sprite.setTexture(this.lightAccept + '-out-wrong');
+            if(this.firstLight){
+              scene.sound.play("incorrect");
+              this.firstLight = false;
+            }
         }
     }
 }
