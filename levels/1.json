@@ -52,5 +52,9 @@
             "orientation": 1
         }
     ],
-    "inventory":[]
+    "inventory":[
+        "reflector",
+        "reflector",
+        "extractor"
+    ]
 }

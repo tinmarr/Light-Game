@@ -1,6 +1,6 @@
 class ColorFliterTile extends EmptyTile{
-    constructor(x, y, grid, tileSize, color, orientation){
-        super(x, y, grid, tileSize);
+    constructor(x, y, grid, tileSize, color, orientation, pixelCoords = null){
+        super(x, y, grid, tileSize, pixelCoords);
         this.sprite.setTexture(''); // TODO
         this.color = color;
         this.orientation = orientation; // the orientation refers to the white light position

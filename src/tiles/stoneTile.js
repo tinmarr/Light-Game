@@ -1,6 +1,6 @@
 class StoneTile extends EmptyTile{
-    constructor(x, y, grid, tileSize){
-        super(x, y, grid, tileSize);
+    constructor(x, y, grid, tileSize, pixelCoords = null){
+        super(x, y, grid, tileSize, pixelCoords);
         this.sprite.setTexture("");
 
     }
