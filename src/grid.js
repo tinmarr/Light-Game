@@ -19,9 +19,8 @@ class Grid {
             this.tiles.push(layer);
         }
     }
-    onBoard(x, y){
-      return (0 <= y && y < this.tiles[0].length && 0 <= x && x < this.tiles.length);
-
+    onBoard(x, y) {
+        return 0 <= y && y <= this.dims.h && 0 <= x && x <= this.dims.w;
     }
 
     getPixelCoords(tileCoord) {
@@ -80,10 +79,18 @@ class Grid {
 
     setTile(entity) {
         if (!(entity.pos.y > this.dims.h || entity.pos.x > this.dims.w)) {
-            this.tiles[entity.pos.y][entity.pos.x] = entity;
+            if (
+                !(this.getTile(entity.pos).constructor.name == EmptyTile.name) &&
+                this.getTile(entity.pos) instanceof EmptyTile &&
+                entity instanceof Light
+            ) {
+                this.tiles[entity.pos.y][entity.pos.x].changeLight(entity);
+            } else {
+                this.tiles[entity.pos.y][entity.pos.x] = entity;
+            }
         }
     }
-
+    //
     getTile(pos) {
         return this.tiles[pos.y][pos.x];
     }

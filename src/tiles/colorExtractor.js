@@ -8,21 +8,34 @@ class ColorExtractor extends EmptyTile {
         if (this.orientation == 3) this.sprite.angle = -90;
         if (this.orientation == 2) this.sprite.setFlipX(true);
     }
-    changeLight(light){
+    changeLight(light) {
         super.change_sound();
         // check if white light enters: this should be changed if we want different lights to enter the splitter
         if (light.color != 'white') return;
         if (this.orientation == 0 && light.dir == 'E') {
-            var posChange = [[1, -1, 'N'], [2, 0, 'E'], [1, 1, 'S']];
-        }
-        else if (this.orientation == 1 && light.dir == 'S') {
-            var posChange = [[1, 1, 'E'], [0, 2, 'S'], [-1, 1, 'W']];
-        }
-        else if (this.orientation == 2 && light.dir == 'W'){
-            var posChange = [[-1, -1, 'N'], [-2, 0, 'W'], [-1, 1, 'S']];
-        }
-        else if(this.orientation == 3 && light.dir == 'N'){
-            var posChange = [[-1, -1, 'W'], [0, -2, 'N'], [1, -1, 'E']];
+            var posChange = [
+                [1, -1, 'N'],
+                [2, 0, 'E'],
+                [1, 1, 'S'],
+            ];
+        } else if (this.orientation == 1 && light.dir == 'S') {
+            var posChange = [
+                [1, 1, 'E'],
+                [0, 2, 'S'],
+                [-1, 1, 'W'],
+            ];
+        } else if (this.orientation == 2 && light.dir == 'W') {
+            var posChange = [
+                [-1, -1, 'N'],
+                [-2, 0, 'W'],
+                [-1, 1, 'S'],
+            ];
+        } else if (this.orientation == 3 && light.dir == 'N') {
+            var posChange = [
+                [-1, -1, 'W'],
+                [0, -2, 'N'],
+                [1, -1, 'E'],
+            ];
         }
         var newPos = {
             x0: light.pos.x + posChange[0][0],
@@ -32,11 +45,14 @@ class ColorExtractor extends EmptyTile {
             x2: light.pos.x + posChange[2][0],
             y2: light.pos.y + posChange[2][1],
         };
-        if(this.grid.onBoard(newPos.x0, newPos.y0)){
-        this.grid.setTile(new Light(newPos.x0, newPos.y0, posChange[0][2], 'red', this.grid));}
-        if(this.grid.onBoard(newPos.x1, newPos.y1)){
-        this.grid.setTile(new Light(newPos.x1, newPos.y1, posChange[1][2], 'green', this.grid));}
-        if(this.grid.onBoard(newPos.x2, newPos.y2)){
-        this.grid.setTile(new Light(newPos.x2, newPos.y2, posChange[2][2], 'blue', this.grid));}
-      }
+        if (this.grid.onBoard(newPos.x0, newPos.y0)) {
+            this.grid.setTile(new Light(newPos.x0, newPos.y0, posChange[0][2], 'red', this.grid));
+        }
+        if (this.grid.onBoard(newPos.x1, newPos.y1)) {
+            this.grid.setTile(new Light(newPos.x1, newPos.y1, posChange[1][2], 'green', this.grid));
+        }
+        if (this.grid.onBoard(newPos.x2, newPos.y2)) {
+            this.grid.setTile(new Light(newPos.x2, newPos.y2, posChange[2][2], 'blue', this.grid));
+        }
+    }
 }
